@@ -6,12 +6,16 @@ export const AccountingInput = () => {
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState('');
   const [amount, setAmount] = useState('');
+  const [chfAmount, setChfAmounts] = useState('');
   const [document, setDocument] = useState('');
   const [category, setCategory] = useState('');
 
   const { addTransaction } = useContext(GlobalContext);
 
-  const onSubmit = e => {
+  const fxUsdToChf = 0.96;
+  const fxCopToChf = 0.00025;
+
+  const onInputSubmit = e => {
     e.preventDefault();
 
     const newTransaction = {
@@ -20,13 +24,46 @@ export const AccountingInput = () => {
       description,
       currency,
       amount: +amount,
-      chf: +amount,
+      chf: +chfAmount,
       document,
       category
     };
 
     addTransaction(newTransaction);
+    resetData();
   };
+
+  const amountChange = e => {
+    setAmount(e);
+    setChfAmounts(fxCalcChf(e, currency).toFixed(2));
+  };
+
+  const currencyChange = e => {
+    setCurrency(e);
+    setChfAmounts(fxCalcChf(amount, e).toFixed(2));
+  };
+
+  const fxCalcChf = (amount, currency) => {
+    if (currency === 'USD') {
+      return fxUsdToChf * amount;
+    } else if (currency === 'COP') {
+      return fxCopToChf * amount;
+    } else if (currency === 'CHF') {
+      return 1 * amount;
+    } else {
+      return 'Add Fields';
+    }
+  };
+
+  function resetData() {
+    setDate('');
+    setDescription('');
+    setCurrency('');
+    setAmount('');
+    setChfAmounts('');
+    setDocument('');
+    setCategory('');
+  }
 
   return (
     <form className='input-section-form'>
@@ -66,7 +103,7 @@ export const AccountingInput = () => {
               name='currency'
               className='input'
               value={currency}
-              onChange={e => setCurrency(e.target.value)}
+              onChange={e => currencyChange(e.target.value)}
             >
               <option value=''>Currency</option>
               <option value='USD'>USD</option>
@@ -84,7 +121,7 @@ export const AccountingInput = () => {
               name='amount'
               placeholder='Amount'
               value={amount}
-              onChange={e => setAmount(e.target.value)}
+              onChange={e => amountChange(e.target.value)}
             />
           </div>
 
@@ -106,7 +143,7 @@ export const AccountingInput = () => {
               htmlFor='category-input'
               className='label-input2'
               value={currency}
-              onChange={e => setCurrency(e.target.value)}
+              onChange={e => currencyChange(e.target.value)}
             >
               Category
             </label>
@@ -126,15 +163,15 @@ export const AccountingInput = () => {
             </select>
           </div>
 
-          <div className='form-element'>
-            <span id='amount-chf-nr'></span>
+          <div className='form-element amount-chf'>
+            <span>{'CHF ' + chfAmount}</span>
           </div>
         </div>
       </div>
 
       <div className='button-wrapper'>
         <button className='button save-btn'>Save</button>
-        <button onClick={onSubmit} className='button submit-btn'>
+        <button onClick={onInputSubmit} className='button submit-btn'>
           Enter
         </button>
         <button className='button cancel-btn'>Cancel</button>

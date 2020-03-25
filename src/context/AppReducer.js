@@ -12,6 +12,13 @@ export default (state, action) => {
         ...state,
         transactions: [action.payload, ...state.transactions]
       };
+    case 'EDIT_TRANSACTION':
+      return {
+        ...state,
+        transactions: state.transactions.filter(
+          transaction => transaction._id !== action.payload
+        )
+      };
     default:
       return state;
   }

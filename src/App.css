@@ -442,7 +442,7 @@ th {
   background: white;
 }
 
-#amount-chf-nr {
+.amount-chf-nr {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
@@ -468,10 +468,11 @@ input[type='number']::-webkit-outer-spin-button {
 
 .amount-chf {
   position: absolute;
-  right: 3px;
+  right: 8px;
   bottom: 3px;
   min-width: 180px;
   overflow: hidden;
+  text-align: right;
 }
 
 .button-wrapper {

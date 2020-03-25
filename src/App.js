@@ -25,3 +25,10 @@ function App() {
 }
 
 export default App;
+
+// Edit
+// Save?
+// Post
+// resetinput
+//reseteditmode
+//
