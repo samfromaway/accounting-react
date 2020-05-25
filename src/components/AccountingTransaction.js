@@ -1,10 +1,4 @@
 import React, { useContext } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTimesCircle,
-  faEdit,
-  faUndo
-} from '@fortawesome/free-solid-svg-icons';
 
 import { GlobalContext } from '../context/GlobalState';
 
@@ -18,7 +12,7 @@ export const AccountingTransaction = ({ transaction }) => {
           className='delete-btn'
           onClick={() => deleteTransaction(transaction._id)}
         >
-          <FontAwesomeIcon icon={faTimesCircle} />
+          <div>circle</div>
         </button>
       </td>
       <td>{transaction.date}</td>
@@ -33,10 +27,10 @@ export const AccountingTransaction = ({ transaction }) => {
           className='edit-btn'
           onClick={() => editTransaction(transaction._id)}
         >
-          <FontAwesomeIcon icon={faEdit} />
+          <div>edit</div>
         </button>{' '}
         <button className='exit-edit-btn'>
-          <FontAwesomeIcon icon={faUndo} />
+          <div>undo</div>
         </button>
       </td>
     </tr>
