@@ -42,7 +42,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-export const AccountingTransaction = () => {
+const AccountingTransaction = () => {
   const { transactions } = useContext(GlobalContext);
 
   const [state, setState] = useState({
@@ -112,3 +112,5 @@ export const AccountingTransaction = () => {
     />
   );
 };
+
+export default AccountingTransaction;

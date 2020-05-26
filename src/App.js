@@ -1,35 +1,38 @@
 import React from 'react';
-import { Header } from './components/Header';
-import { AccountingSummary } from './components/AccountingSummary';
-import { AccountingTransaction } from './components/AccountingTransaction';
-import { Grid } from '@material-ui/core';
-import { GlobalProvider } from './context/GlobalState';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
+import Header from './pages/income/components/Header';
 import './App.css';
-const theme = createMuiTheme();
+import AccountingSummary from './pages/income/components/AccountingSummary';
+import AccountingTransaction from './pages/income/components/AccountingTransaction';
+import { GlobalProvider } from './pages/income/context/GlobalState';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import purple from '@material-ui/core/colors/purple';
+import green from '@material-ui/core/colors/green';
 
-function App() {
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    primary: purple,
+    secondary: green,
+  },
+  status: {
+    danger: 'orange',
+  },
+});
+
+const App = () => {
   return (
     <GlobalProvider>
       <ThemeProvider theme={theme}>
-        <Grid container direction='column'>
-          <Grid item xs={12}>
-            <Header />
-          </Grid>
-          <Grid item container>
-            <Grid item xs={2} />
-            <Grid item xs={8}>
-              <AccountingSummary />
-              <AccountingTransaction />
-            </Grid>
-            <Grid item xs={2} />
-          </Grid>
-        </Grid>
+        <Header />
+        <Container fixed maxWidth='lg'>
+          <AccountingSummary />
+          <AccountingTransaction />
+        </Container>
       </ThemeProvider>
     </GlobalProvider>
   );
-}
+};
 
 export default App;
 
