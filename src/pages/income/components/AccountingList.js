@@ -42,7 +42,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-const AccountingTransaction = () => {
+const AccountingList = () => {
   const { transactions } = useContext(GlobalContext);
 
   const [state, setState] = useState({
@@ -52,14 +52,20 @@ const AccountingTransaction = () => {
       {
         title: 'Currency',
         field: 'currency',
-        lookup: { 1: 'CHF', 2: 'USD', 3: 'COP' },
+        lookup: { chf: 'CHF', usd: 'USD', cop: 'COP' },
       },
       { title: 'Amount', field: 'amount', type: 'numeric' },
       { title: 'Document', field: 'document' },
       {
         title: 'Category',
         field: 'category',
-        lookup: { 1: 'HTE', 2: 'HTE Products', 3: 'HTM', 4: 'CH', 5: 'Online' },
+        lookup: {
+          hte: 'HTE',
+          hteProducts: 'HTE Products',
+          htm: 'HTM',
+          ch: 'CH',
+          online: 'Online',
+        },
       },
     ],
     data: transactions,
@@ -113,4 +119,4 @@ const AccountingTransaction = () => {
   );
 };
 
-export default AccountingTransaction;
+export default AccountingList;
