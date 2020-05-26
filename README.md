@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Strict Mode Disabled
+
+Because of the table by material UI strict mode had to be disabled because of an error.
+
+In the project directory, you can run:
 
 ## Available Scripts
 

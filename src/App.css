@@ -364,9 +364,6 @@ body {
   width: 100%;
 }
 
-.sum-wrapper {
-}
-
 .graph-wrapper {
   height: 200px;
   width: 400px;
@@ -494,120 +491,6 @@ input[type='number']::-webkit-outer-spin-button {
 
 /*  ----- Table ---- */
 
-.table {
-  width: 100%;
-  border-spacing: 0;
-  margin: 1em 0;
-}
-
-tr {
-  background-color: white;
-}
-
-th,
-td {
-  margin: 0;
-  font-size: 12px;
-  border: var(--border01);
-}
-
-th {
-  text-align: left;
-}
-
-td {
-  padding: 10px;
-  position: relative;
-}
-
-.delete-btn,
-.edit-btn,
-.exit-edit-btn {
-  cursor: pointer;
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  border: 0;
-  color: #fff;
-  line-height: 20px;
-  transform: translate(-100%, -50%);
-  text-align: center;
-}
-
-.delete-btn,
-.edit-btn {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  text-align: center;
-}
-
-.delete-btn i,
-.edit-btn i,
-.exit-edit-btn i {
-  color: white;
-  width: 100%;
-  margin: auto;
-}
-
-.delete-btn {
-  top: 50%;
-  right: -30px;
-  background-color: #e74c3c;
-  font-size: 18px;
-  border-radius: var(--box-radius01) 0 0 var(--box-radius01);
-}
-
-.edit-btn {
-  top: 50%;
-  left: 30px;
-  background-color: var(--main-blue);
-  border-radius: 0 var(--box-radius01) var(--box-radius01) 0;
-}
-.exit-edit-btn {
-  display: none;
-  top: 50%;
-  left: 30px;
-  background-color: var(--main-blue);
-  font-size: 13px;
-  border-radius: 0 var(--box-radius01) var(--box-radius01) 0;
-}
-
-tr:hover .delete-btn {
-  opacity: 1;
-}
-tr:hover .edit-btn {
-  opacity: 1;
-}
-
-.borderless {
-  border: none;
-  background-color: var(--light-color);
-}
-
-/* modes*/
-.edit-mode-table {
-  animation: pulse-color 1.6s infinite;
-  animation-timing-function: ease-in-out;
-  color: white;
-}
-
-.table-edit-mode {
-  color: gray;
-}
-
-@keyframes pulse-color {
-  0% {
-    background-color: var(--main-blue);
-  }
-  50% {
-    background-color: #3c2c94e5;
-  }
-
-  100% {
-    background-color: var(--main-blue);
-  }
-}
-
-.pulse-color {
-  animation: pulse-color 1.3s infinite;
+.AccountingTransaction {
+  max-width: 800px;
 }
