@@ -14,8 +14,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-
-import { GlobalContext } from '../context/GlobalState';
+import TransactionsContext from '../context/transactions/transactionsContext';
 
 const tableIcons = {
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -41,7 +40,7 @@ const tableIcons = {
 };
 
 const AccountingTable = () => {
-  const { transactions } = useContext(GlobalContext);
+  const { transactions } = useContext(TransactionsContext);
 
   const [state, setState] = useState({
     columns: [
@@ -53,6 +52,7 @@ const AccountingTable = () => {
         lookup: { chf: 'CHF', usd: 'USD', cop: 'COP' },
       },
       { title: 'Amount', field: 'amount', type: 'numeric' },
+      { title: 'CHF', field: 'chfAmount', type: 'numeric' },
       { title: 'Document', field: 'document' },
       {
         title: 'Category',

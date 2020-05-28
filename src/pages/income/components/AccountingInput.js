@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import {
   MuiPickersUtilsProvider,
@@ -13,8 +12,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
-
-import { GlobalContext } from '../context/GlobalState';
+import TransactionsContext from '../context/transactions/transactionsContext';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -65,21 +63,18 @@ const AccountingInput = () => {
   const [document, setDocument] = useState('');
   const [category, setCategory] = useState('');
 
-  const { addTransaction } = useContext(GlobalContext);
+  const { addTransaction, transactions } = useContext(TransactionsContext);
   const classes = useStyles();
-  // Base ---------------------------------------------------
+  console.log(transactions);
 
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
-
-  const fxUsdToChf = 0.96;
-  const fxCopToChf = 0.00025;
+  const USD_TO_CHF = 0.96;
+  const COP_TO_CHF = 0.00025;
 
   const onInputSubmit = (e) => {
     e.preventDefault();
 
     const newTransaction = {
+      // id will be generated from mongoDB
       _id: Math.floor(Math.random() * 100000000),
       date,
       description,
@@ -94,21 +89,21 @@ const AccountingInput = () => {
     resetData();
   };
 
-  const amountChange = (e) => {
-    setAmount(e);
-    setChfAmounts(fxCalcChf(e, currency).toFixed(2));
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
+    setChfAmounts(fxCalcChf(e.target.value, currency));
   };
 
-  const currencyChange = (e) => {
-    setCurrency(e);
-    setChfAmounts(fxCalcChf(amount, e).toFixed(2));
+  const handleCurrencyChange = (e) => {
+    setCurrency(e.target.value);
+    setChfAmounts(fxCalcChf(amount, e.target.value));
   };
 
   const fxCalcChf = (amount, currency) => {
     if (currency === 'USD') {
-      return fxUsdToChf * amount;
+      return USD_TO_CHF * amount;
     } else if (currency === 'COP') {
-      return fxCopToChf * amount;
+      return COP_TO_CHF * amount;
     } else if (currency === 'CHF') {
       return 1 * amount;
     } else {
@@ -141,7 +136,7 @@ const AccountingInput = () => {
               label='Date'
               format='MM/dd/yyyy'
               value={date}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={(e) => setDate(e)}
               KeyboardButtonProps={{
                 'aria-label': 'change date',
               }}
@@ -150,6 +145,7 @@ const AccountingInput = () => {
           <Box className={classes.box}>
             <TextField
               id='description'
+              required={true}
               className={classes.inputElement}
               label='Description'
               value={description}
@@ -159,11 +155,12 @@ const AccountingInput = () => {
 
             <TextField
               id='currency'
+              required={true}
               className={classes.inputElement}
               select
               label='Currency'
               value={currency}
-              onChange={currencyChange}
+              onChange={handleCurrencyChange}
               variant='outlined'
             >
               {currencies.map((option) => (
@@ -175,10 +172,13 @@ const AccountingInput = () => {
 
             <TextField
               id='amount'
+              required={true}
+              type={'number'}
               className={classes.inputElement}
+              value={amount}
               label='Amount'
               variant='outlined'
-              onChange={amountChange}
+              onChange={handleAmountChange}
             />
 
             <TextField
@@ -192,6 +192,7 @@ const AccountingInput = () => {
 
             <TextField
               id='category'
+              required={true}
               className={classes.inputElement}
               select
               label='Category'
@@ -206,8 +207,9 @@ const AccountingInput = () => {
               ))}
             </TextField>
           </Box>
+          <h3>CHF{chfAmount}</h3>
           <Box className={classes.fabBox}>
-            <Fab color='primary' aria-label='add'>
+            <Fab color='primary' aria-label='add' onClick={onInputSubmit}>
               <AddIcon />
             </Fab>
           </Box>

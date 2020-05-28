@@ -7,7 +7,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { GlobalContext } from '../context/GlobalState';
+import TransactionsContext from '../context/transactions/transactionsContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   const classes = useStyles();
-  const { transactions } = useContext(GlobalContext);
+  const { transactions } = useContext(TransactionsContext);
   const total = transactions
     .map((transaction) => transaction.chf)
     .reduce((acc, item) => (acc += item), 0)

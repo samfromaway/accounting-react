@@ -3,9 +3,8 @@ import Header from './pages/income/components/Header';
 import './App.css';
 import AccountingSummary from './pages/income/components/AccountingSummary';
 import AccountingInput from './pages/income/components/AccountingInput';
-import Inputold from './pages/income/components/inputold';
 import AccountingTable from './pages/income/components/AccountingTable';
-import { GlobalProvider } from './pages/income/context/GlobalState';
+import TransactionsState from './pages/income/context/transactions/TransactionsState';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -20,7 +19,7 @@ const theme = createMuiTheme({
 
 const App = () => {
   return (
-    <GlobalProvider>
+    <TransactionsState>
       <ThemeProvider theme={theme}>
         <Header />
         <Box m={8} />
@@ -33,7 +32,7 @@ const App = () => {
         </Container>
         <Box m={10} />
       </ThemeProvider>
-    </GlobalProvider>
+    </TransactionsState>
   );
 };
 
