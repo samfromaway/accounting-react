@@ -11,18 +11,12 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Stack, EventTracker } from '@devexpress/dx-react-chart';
 import TransactionsContext from '../context/transactions/transactionsContext';
-import { useChartData } from '../data/turnover';
 
-const AccountingSummaryChart = ({ title }) => {
+const AccountingSummaryChart = ({ title, data }) => {
   const { transactions } = useContext(TransactionsContext);
-
-  const data = useChartData(transactions);
-  console.log(transactions);
-  console.log(data);
 
   return (
     <Paper>
-      <button onClick={console.log(data)}>ggggggggg</button>
       <Chart data={data} height={500}>
         <ValueScale name='chfAmount' />
 

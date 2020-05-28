@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 
-export const useChartData = (transactions) => {
+export const useFilterPerMonth = (transactions) => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    setChartData([]);
     function generateMonthDataSum(from, to) {
       const total = transactions.filter(
         (transaction) =>
