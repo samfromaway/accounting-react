@@ -46,3 +46,4 @@ export default App;
 //title fuer import box
 // left align title chart
 // style cancle button
+//proptypes

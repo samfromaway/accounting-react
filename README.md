@@ -2,6 +2,9 @@
 
 Because of the table by material UI strict mode had to be disabled because of an error.
 
+## Adding New Category
+When adding a new category make sure to add the category to the required functions in the chart section.
+
 In the project directory, you can run:
 
 ## Available Scripts

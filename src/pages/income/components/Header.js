@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -30,8 +30,6 @@ const Header = (props) => {
   const total = transactions
     .map((transaction) => transaction.chfAmount)
     .reduce((acc, item) => (acc += item), 0);
-
-  console.log(transactions);
 
   return (
     <React.Fragment>

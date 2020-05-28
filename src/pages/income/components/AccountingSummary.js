@@ -7,13 +7,13 @@ const AccountingSummary = () => {
     <Fragment>
       <Grid container spacing={4}>
         <Grid item xs={4}>
-          <AccountingSummaryChart />
+          <AccountingSummaryChart title={'Turnover'} />
         </Grid>
         <Grid item xs={4}>
-          <AccountingSummaryChart />
+          <AccountingSummaryChart title={'Income2'} />
         </Grid>
         <Grid item xs={4}>
-          <AccountingSummaryChart />
+          <AccountingSummaryChart title={'Income2'} />
         </Grid>
       </Grid>
     </Fragment>

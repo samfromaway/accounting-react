@@ -1,20 +1,9 @@
-import React, { useContext, useEffect } from 'react';
-import Paper from '@material-ui/core/Paper';
-import {
-  Chart,
-  BarSeries,
-  Title,
-  ArgumentAxis,
-  ValueAxis,
-  Tooltip,
-  Legend,
-} from '@devexpress/dx-react-chart-material-ui';
-import { ValueScale, Stack, EventTracker } from '@devexpress/dx-react-chart';
+import { useContext } from 'react';
 import TransactionsContext from '../context/transactions/transactionsContext';
-import turnover from '../data/turnover';
 
-const AccountingSummaryChart = ({ title }) => {
+const TurnoverData = () => {
   const { transactions } = useContext(TransactionsContext);
+  console.log('hii');
 
   function generateMonthDataSum(from, to) {
     const total = transactions.filter(
@@ -66,7 +55,6 @@ const AccountingSummaryChart = ({ title }) => {
     };
   };
 
-  useEffect(() => {});
   const janTotal = sumByCategoryByMonth(
     'Jan',
     generateMonthDataSum('-01-01', '-01-31')
@@ -131,67 +119,6 @@ const AccountingSummaryChart = ({ title }) => {
     decTotal,
   ];
 
-  console.log(janTotal);
-
-  return (
-    <Paper>
-      <Chart data={data} height={500}>
-        <ValueScale name='chfAmount' />
-
-        <ArgumentAxis />
-        <ValueAxis scaleName='chfAmount' />
-        <Title text={title} />
-        <BarSeries
-          name={'HTE Products'}
-          valueField='hteProducts'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <BarSeries
-          name={'HTE Services'}
-          valueField='hteServices'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <BarSeries
-          name={'Comissions'}
-          valueField='comissions'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <BarSeries
-          name={'Dev World'}
-          valueField='devWorld'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <BarSeries
-          name={'Youtube'}
-          valueField='youtube'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <EventTracker />
-        <Tooltip />
-        <Stack
-          stacks={[
-            {
-              series: [
-                'HTE Products',
-                'HTE Services',
-                'Comissions',
-                'Dev World',
-                'Youtube',
-              ],
-            },
-          ]}
-        />
-        <Legend position={'bottom'} />
-      </Chart>
-    </Paper>
-  );
+  return data;
 };
-
-export default AccountingSummaryChart;
-
-//https://devexpress.github.io/devextreme-reactive/react/chart/docs/guides/getting-started/
+export default TurnoverData;

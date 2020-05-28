@@ -13,7 +13,7 @@ const TransactionsState = ({ children }) => {
         category: 'hteProducts',
         currency: 'cop',
         chfAmount: 111,
-        date: '2001-01-15',
+        date: '2020-01-02',
         description: '111desc',
         document: 'Invoice 1122',
       },
@@ -23,17 +23,17 @@ const TransactionsState = ({ children }) => {
         category: 'hteProducts',
         currency: 'usd',
         chfAmount: 222,
-        date: '2002-01-15',
+        date: '2020-02-15',
         description: '222desc',
         document: 'Invoice 11',
       },
       {
         _id: 3333,
         amount: 333,
-        category: 'hteProducts',
+        category: 'hteServices',
         currency: 'usd',
         chfAmount: 333,
-        date: '2003-01-15',
+        date: '2020-01-15',
         description: '333desc',
         document: 'Invoice 1122',
       },
@@ -68,7 +68,6 @@ const TransactionsState = ({ children }) => {
 
   useEffect(() => {
     addChfValue();
-    console.log(state.transactions);
   });
 
   //Actions

@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useState, useEffect } from 'react';
+import React, { forwardRef, useContext, useState } from 'react';
 import MaterialTable from 'material-table';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -44,20 +44,28 @@ const AccountingTable = () => {
     TransactionsContext
   );
 
-  const [columns, setColumns] = useState([
-    { title: 'Date', field: 'date', type: 'date' },
+  const [columns] = useState([
+    { title: 'Date', field: 'date', type: 'date', defaultSort: 'desc' },
     { title: 'Description', field: 'description' },
     {
       title: 'Currency',
       field: 'currency',
       lookup: { chf: 'CHF', usd: 'USD', cop: 'COP' },
     },
-    { title: 'Amount', field: 'amount', type: 'numeric' },
+
+    {
+      title: 'Amount',
+      field: 'amount',
+      type: 'numeric',
+      cellStyle: { textAlign: 'left' },
+    },
     {
       title: 'CHF',
       field: 'chfAmount',
-      type: 'numeric',
+      type: 'currency',
+      currencySetting: { currencyCode: 'chf' },
       editable: 'never',
+      cellStyle: { textAlign: 'left' },
     },
     { title: 'Document', field: 'document' },
     {
@@ -79,7 +87,9 @@ const AccountingTable = () => {
       title='Transactions'
       columns={columns}
       data={transactions}
-      options={{}}
+      options={{
+        headerStyle: { textAlign: 'left' },
+      }}
       editable={{
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
