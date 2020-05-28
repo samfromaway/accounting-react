@@ -44,40 +44,40 @@ const AccountingTable = () => {
     TransactionsContext
   );
 
-  const [state, setState] = useState({
-    columns: [
-      { title: 'Date', field: 'date', type: 'date' },
-      { title: 'Description', field: 'description' },
-      {
-        title: 'Currency',
-        field: 'currency',
-        lookup: { chf: 'CHF', usd: 'USD', cop: 'COP' },
+  const [columns, setColumns] = useState([
+    { title: 'Date', field: 'date', type: 'date' },
+    { title: 'Description', field: 'description' },
+    {
+      title: 'Currency',
+      field: 'currency',
+      lookup: { chf: 'CHF', usd: 'USD', cop: 'COP' },
+    },
+    { title: 'Amount', field: 'amount', type: 'numeric' },
+    {
+      title: 'CHF',
+      field: 'chfAmount',
+      type: 'numeric',
+      editable: 'never',
+    },
+    { title: 'Document', field: 'document' },
+    {
+      title: 'Category',
+      field: 'category',
+      lookup: {
+        hteServices: 'HTE Servcies',
+        hteProducts: 'HTE Products',
+        comissions: 'Comissions',
+        devWorld: 'Dev World',
+        youtube: 'Youtube',
       },
-      { title: 'Amount', field: 'amount', type: 'numeric' },
-      { title: 'CHF', field: 'chfAmount', type: 'numeric', editable: 'never' },
-      { title: 'Document', field: 'document' },
-      {
-        title: 'Category',
-        field: 'category',
-        lookup: {
-          hteServices: 'HTE Servcies',
-          hteProducts: 'HTE Products',
-          comissions: 'Comissions',
-          devWorld: 'Dev World',
-          youtube: 'Youtube',
-        },
-      },
-    ],
-    data: transactions,
-  });
-
-  console.log(transactions);
+    },
+  ]);
 
   return (
     <MaterialTable
       icons={tableIcons}
       title='Transactions'
-      columns={state.columns}
+      columns={columns}
       data={transactions}
       options={{}}
       editable={{

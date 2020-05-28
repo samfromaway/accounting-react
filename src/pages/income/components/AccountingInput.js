@@ -100,7 +100,6 @@ const AccountingInput = () => {
       description,
       currency,
       amount: +amount,
-      chf: +chfAmount,
       document,
       category,
     };
@@ -120,14 +119,15 @@ const AccountingInput = () => {
   };
 
   const fxCalcChf = (amount, currency) => {
-    if (currency === 'usd') {
-      return USD_TO_CHF * amount;
-    } else if (currency === 'cop') {
-      return COP_TO_CHF * amount;
-    } else if (currency === 'chf') {
-      return 1 * amount;
-    } else {
-      return 'Currency/Amount missing';
+    switch (currency) {
+      case 'usd':
+        return USD_TO_CHF * amount;
+      case 'cop':
+        return COP_TO_CHF * amount;
+      case 'chf':
+        return amount;
+      default:
+        return 'Currency/Amount missing';
     }
   };
 
