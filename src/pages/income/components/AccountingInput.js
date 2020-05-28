@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Paper from '@material-ui/core/Paper';
+import { Typography } from '@material-ui/core';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -36,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
   fabCancel: {
     position: 'absolute',
     top: '10px',
+    right: '10px',
+  },
+  chfValue: {
+    position: 'absolute',
+    bottom: '10px',
     right: '10px',
   },
 }));
@@ -119,15 +125,17 @@ const AccountingInput = () => {
   };
 
   const fxCalcChf = (amount, currency) => {
-    switch (currency) {
-      case 'usd':
-        return USD_TO_CHF * amount;
-      case 'cop':
-        return COP_TO_CHF * amount;
-      case 'chf':
-        return amount;
-      default:
-        return 'Currency/Amount missing';
+    if (amount && currency) {
+      switch (currency) {
+        case 'usd':
+          return USD_TO_CHF * amount;
+        case 'cop':
+          return COP_TO_CHF * amount;
+        case 'chf':
+          return amount;
+        default:
+          return 'Currency/Amount missing';
+      }
     }
   };
 
@@ -227,7 +235,7 @@ const AccountingInput = () => {
               ))}
             </TextField>
           </Box>
-          <h3>CHF{chfAmount}</h3>
+          <Typography className={classes.chfValue}>CHF {chfAmount}</Typography>
           <Box className={classes.fabBox}>
             <Fab color='primary' aria-label='add' onClick={onInputSubmit}>
               <AddIcon />

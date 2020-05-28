@@ -37,3 +37,12 @@ const App = () => {
 };
 
 export default App;
+
+//Charts
+// Button Add confimration
+// CHf total input style
+// 100,000 trennzeichen
+// dark mode toggle
+//title fuer import box
+// left align title chart
+// style cancle button

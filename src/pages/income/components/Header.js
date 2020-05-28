@@ -28,9 +28,10 @@ const Header = (props) => {
   const classes = useStyles();
   const { transactions } = useContext(TransactionsContext);
   const total = transactions
-    .map((transaction) => transaction.chf)
-    .reduce((acc, item) => (acc += item), 0)
-    .toFixed(2);
+    .map((transaction) => transaction.chfAmount)
+    .reduce((acc, item) => (acc += item), 0);
+
+  console.log(transactions);
 
   return (
     <React.Fragment>
