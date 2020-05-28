@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { CURRENT_YEAR } from '../../../constants';
 
 export const useFilterPerMonth = (transactions) => {
   const [chartData, setChartData] = useState([]);
@@ -7,7 +8,8 @@ export const useFilterPerMonth = (transactions) => {
     function generateMonthDataSum(from, to) {
       const total = transactions.filter(
         (transaction) =>
-          transaction.date >= 2020 + from && transaction.date <= 2020 + to
+          transaction.date >= CURRENT_YEAR + from &&
+          transaction.date <= CURRENT_YEAR + to
       );
 
       return total;
