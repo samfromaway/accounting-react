@@ -1,6 +1,5 @@
 import React, { forwardRef, useContext, useState } from 'react';
 import MaterialTable from 'material-table';
-import AddBox from '@material-ui/icons/AddBox';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
@@ -19,7 +18,6 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 import { GlobalContext } from '../context/GlobalState';
 
 const tableIcons = {
-  Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
   Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
   Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -42,12 +40,12 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-const AccountingList = () => {
+const AccountingTable = () => {
   const { transactions } = useContext(GlobalContext);
 
   const [state, setState] = useState({
     columns: [
-      { title: 'Date', field: 'date' },
+      { title: 'Date', field: 'date', type: 'date' },
       { title: 'Description', field: 'description' },
       {
         title: 'Currency',
@@ -70,7 +68,6 @@ const AccountingList = () => {
     ],
     data: transactions,
   });
-  console.log(state);
 
   return (
     <MaterialTable
@@ -78,18 +75,8 @@ const AccountingList = () => {
       title='Transactions'
       columns={state.columns}
       data={state.data}
+      options={{}}
       editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
             setTimeout(() => {
@@ -119,4 +106,6 @@ const AccountingList = () => {
   );
 };
 
-export default AccountingList;
+export default AccountingTable;
+
+//https://material-table.com/#/

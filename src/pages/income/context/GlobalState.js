@@ -4,39 +4,30 @@ import AppReducer from './AppReducer';
 const initialState = {
   transactions: [
     {
-      _id: '5e762eba84de3860a8b5cd06',
+      amount: '100000',
+      category: 'hteProducts',
+      currency: 'cop',
       date: '2020-01-15',
-      description: 'refund Jonny',
-      currency: 'USD',
-      amount: 1,
-      chf: 111,
-      document: '66',
-      category: 'HTM',
-      createdAt: '2020 - 03 - 21T15: 11: 54.741+00: 00'
+      description: 'Sam payment',
+      document: 'Invoice 1122',
     },
     {
-      _id: '5e762eba860a8b5cd06',
-      date: '2020-02-15',
-      description: 'refund Jonny',
-      currency: 'USD',
-      amount: 2,
-      chf: 222,
-      document: '66',
-      category: 'HTM',
-      createdAt: '2020 - 03 - 21T15: 11: 54.741+00: 00'
+      amount: '222',
+      category: 'hteProducts',
+      currency: 'usd',
+      date: '2020-01-15',
+      description: 'Sam payment',
+      document: 'Invoice 11',
     },
     {
-      _id: '5e762eba84de386b5cd6',
+      amount: '222',
+      category: 'hteProducts',
+      currency: 'usd',
       date: '2020-01-15',
-      description: 'refund Jonny',
-      currency: 'USD',
-      amount: 3,
-      chf: 333,
-      document: '66',
-      category: 'HTM',
-      createdAt: '2020 - 03 - 21T15: 11: 54.741+00: 00'
-    }
-  ]
+      description: 'Sam payment',
+      document: 'Invoice 1122',
+    },
+  ],
 };
 
 export const GlobalContext = createContext(initialState);
@@ -49,21 +40,21 @@ export const GlobalProvider = ({ children }) => {
   function deleteTransaction(id) {
     dispatch({
       type: 'DELETE_TRANSACTION',
-      payload: id
+      payload: id,
     });
   }
 
   function addTransaction(transaction) {
     dispatch({
       type: 'ADD_TRANSACTION',
-      payload: transaction
+      payload: transaction,
     });
   }
 
   function editTransaction(id) {
     dispatch({
       type: 'EDIT_TRANSACTION',
-      payload: id
+      payload: id,
     });
   }
 
@@ -73,7 +64,7 @@ export const GlobalProvider = ({ children }) => {
         transactions: state.transactions,
         deleteTransaction,
         addTransaction,
-        editTransaction
+        editTransaction,
       }}
     >
       {children}
