@@ -7,30 +7,33 @@ const TransactionsState = ({ children }) => {
   const initialState = {
     transactions: [
       {
-        amount: '100000',
+        _id: 1111,
+        amount: '111',
         category: 'hteProducts',
         currency: 'cop',
-        chfAmount: '23445',
-        date: '2020-01-15',
-        description: 'Sam payment',
+        chfAmount: '111',
+        date: '2001-01-15',
+        description: '111desc',
         document: 'Invoice 1122',
       },
       {
+        _id: 2222,
         amount: '222',
         category: 'hteProducts',
         currency: 'usd',
-        date: '2020-01-15',
-        chfAmount: '23445',
-        description: 'Sam payment',
+        date: '2002-01-15',
+        chfAmount: '222',
+        description: '222desc',
         document: 'Invoice 11',
       },
       {
-        amount: '222',
+        _id: 3333,
+        amount: '333',
         category: 'hteProducts',
         currency: 'usd',
-        date: '2020-01-15',
-        chfAmount: '23445',
-        description: 'Sam payment',
+        date: '2003-01-15',
+        chfAmount: '333',
+        description: '333desc',
         document: 'Invoice 1122',
       },
     ],
@@ -53,10 +56,10 @@ const TransactionsState = ({ children }) => {
     });
   }
 
-  function editTransaction(id) {
+  function editTransaction(updatedTransaction, id) {
     dispatch({
       type: 'EDIT_TRANSACTION',
-      payload: id,
+      payload: { updatedTransaction: updatedTransaction, id: id },
     });
   }
 

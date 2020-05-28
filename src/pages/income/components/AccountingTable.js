@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useState } from 'react';
+import React, { forwardRef, useContext, useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -40,7 +40,9 @@ const tableIcons = {
 };
 
 const AccountingTable = () => {
-  const { transactions } = useContext(TransactionsContext);
+  const { transactions, deleteTransaction, editTransaction } = useContext(
+    TransactionsContext
+  );
 
   const [state, setState] = useState({
     columns: [
@@ -52,29 +54,31 @@ const AccountingTable = () => {
         lookup: { chf: 'CHF', usd: 'USD', cop: 'COP' },
       },
       { title: 'Amount', field: 'amount', type: 'numeric' },
-      { title: 'CHF', field: 'chfAmount', type: 'numeric' },
+      { title: 'CHF', field: 'chfAmount', type: 'numeric', editable: 'never' },
       { title: 'Document', field: 'document' },
       {
         title: 'Category',
         field: 'category',
         lookup: {
-          hte: 'HTE',
+          hteServices: 'HTE Servcies',
           hteProducts: 'HTE Products',
-          htm: 'HTM',
-          ch: 'CH',
-          online: 'Online',
+          comissions: 'Comissions',
+          devWorld: 'Dev World',
+          youtube: 'Youtube',
         },
       },
     ],
     data: transactions,
   });
 
+  console.log(transactions);
+
   return (
     <MaterialTable
       icons={tableIcons}
       title='Transactions'
       columns={state.columns}
-      data={state.data}
+      data={transactions}
       options={{}}
       editable={{
         onRowUpdate: (newData, oldData) =>
@@ -82,11 +86,7 @@ const AccountingTable = () => {
             setTimeout(() => {
               resolve();
               if (oldData) {
-                setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
+                editTransaction(newData, oldData._id);
               }
             }, 600);
           }),
@@ -94,11 +94,7 @@ const AccountingTable = () => {
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
+              deleteTransaction(oldData._id);
             }, 600);
           }),
       }}

@@ -13,6 +13,7 @@ import AddIcon from '@material-ui/icons/Add';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
 import TransactionsContext from '../context/transactions/transactionsContext';
+import { USD_TO_CHF, COP_TO_CHF } from '../../../constants';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -41,16 +42,39 @@ const useStyles = makeStyles((theme) => ({
 
 const currencies = [
   {
-    value: 'USD',
+    value: 'usd',
     label: 'USD',
   },
   {
-    value: 'CHF',
+    value: 'chf',
     label: 'CHF',
   },
   {
-    value: 'COP',
+    value: 'cop',
     label: 'COP',
+  },
+];
+
+const categories = [
+  {
+    value: 'hteServices',
+    label: 'HTE Services',
+  },
+  {
+    value: 'hteProducts',
+    label: 'HTE Products',
+  },
+  {
+    value: 'comissions',
+    label: 'Comissions',
+  },
+  {
+    value: 'devWorld',
+    label: 'Dev World',
+  },
+  {
+    value: 'youtube',
+    label: 'Youtube',
   },
 ];
 
@@ -63,12 +87,8 @@ const AccountingInput = () => {
   const [document, setDocument] = useState('');
   const [category, setCategory] = useState('');
 
-  const { addTransaction, transactions } = useContext(TransactionsContext);
+  const { addTransaction } = useContext(TransactionsContext);
   const classes = useStyles();
-  console.log(transactions);
-
-  const USD_TO_CHF = 0.96;
-  const COP_TO_CHF = 0.00025;
 
   const onInputSubmit = (e) => {
     e.preventDefault();
@@ -100,18 +120,18 @@ const AccountingInput = () => {
   };
 
   const fxCalcChf = (amount, currency) => {
-    if (currency === 'USD') {
+    if (currency === 'usd') {
       return USD_TO_CHF * amount;
-    } else if (currency === 'COP') {
+    } else if (currency === 'cop') {
       return COP_TO_CHF * amount;
-    } else if (currency === 'CHF') {
+    } else if (currency === 'chf') {
       return 1 * amount;
     } else {
-      return 'Add Fields';
+      return 'Currency/Amount missing';
     }
   };
 
-  function resetData() {
+  const resetData = () => {
     setDate(new Date());
     setDescription('');
     setCurrency('');
@@ -119,7 +139,7 @@ const AccountingInput = () => {
     setChfAmounts('');
     setDocument('');
     setCategory('');
-  }
+  };
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -200,7 +220,7 @@ const AccountingInput = () => {
               onChange={(e) => setCategory(e.target.value)}
               variant='outlined'
             >
-              {currencies.map((option) => (
+              {categories.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>
