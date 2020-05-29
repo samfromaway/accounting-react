@@ -4,8 +4,6 @@ import { CURRENT_YEAR } from '../constants';
 export const useFilterPerMonth = (transactions, categories) => {
   const [chartData, setChartData] = useState([]);
 
-  ///////////////////////////////////////////////////////////////////////////////////
-
   useEffect(() => {
     function filterByMonth(from, to) {
       const total = transactions.filter(
@@ -16,8 +14,6 @@ export const useFilterPerMonth = (transactions, categories) => {
 
       return total;
     }
-
-    console.log(categories);
 
     const sumByCategoryByMonth = (month, monthData) => {
       const hteProducts = [0];
@@ -50,6 +46,35 @@ export const useFilterPerMonth = (transactions, categories) => {
         }
       });
 
+      /////////////////////////////////////////
+      var data = [
+        {
+          id: 1,
+          term_id: 5,
+          type: 'car',
+        },
+        {
+          id: 2,
+          term_id: 3,
+          type: 'bike',
+        },
+        {
+          id: 3,
+          term_id: 6,
+          type: 'car',
+        },
+      ];
+
+      var result = data.filter(function (v, i) {
+        return (v['term_id'] == 5 || v['term_id'] == 6) && v.type == 'car';
+      });
+
+      console.log(result);
+
+      //  https://medium.com/better-programming/creating-a-multi-filter-function-to-filter-out-multiple-attributes-javascript-react-rails-5aad8e272142
+
+      ///////////////////////////////////////////
+
       return {
         month: month,
         hteProducts: hteProducts.reduce((acc, item) => (acc += item), 0),
@@ -68,8 +93,6 @@ export const useFilterPerMonth = (transactions, categories) => {
       'Feb',
       filterByMonth('-02-01', '-02-31')
     );
-
-    console.log(filterByMonth('-04-01', '-04-31'));
 
     const marTotal = sumByCategoryByMonth(
       'Mar',
