@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useConext } from 'react';
 //import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -42,7 +42,7 @@ const Header = (props) => {
           <FormControlLabel
             value='start'
             control={<Switch color='primary' />}
-            label='Dark/Light Mode'
+            label='Toggle light/dark theme'
             labelPlacement='end'
           />
         </Toolbar>
