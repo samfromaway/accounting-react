@@ -9,7 +9,7 @@ const TransactionsState = ({ children }) => {
     transactions: [
       {
         _id: 11073046,
-        date: '2020-04-29T11:22:55.763Z',
+        date: '2020-01-01T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
         amount: 100,

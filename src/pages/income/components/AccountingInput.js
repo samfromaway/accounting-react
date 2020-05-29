@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
     bottom: '10px',
     right: '10px',
   },
+  title: {
+    position: 'absolute',
+    top: '10px',
+    left: '24px',
+  },
 }));
 
 const currencies = [
@@ -158,6 +163,9 @@ const AccountingInput = () => {
           autoComplete='off'
           style={{ padding: '10px', position: 'relative' }}
         >
+          <Typography variant='h6' className={classes.title}>
+            Add New
+          </Typography>
           <Box className={classes.box}>
             <KeyboardDatePicker
               id='date'

@@ -3,23 +3,31 @@ import Paper from '@material-ui/core/Paper';
 import {
   Chart,
   BarSeries,
-  Title,
   ArgumentAxis,
   ValueAxis,
   Tooltip,
   Legend,
 } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Stack, EventTracker } from '@devexpress/dx-react-chart';
+import { Typography } from '@material-ui/core';
 
-const AccountingSummaryChart = ({ title, data }) => {
+const AccountingSummaryChart = ({ title, data, total }) => {
   return (
-    <Paper>
+    <Paper style={{ position: 'relative' }}>
+      <Typography variant='h6' style={{ padding: '10px 0px 10px 24px' }}>
+        {title}
+      </Typography>
+      <Typography
+        variant='h6'
+        style={{ position: 'absolute', top: '10px', right: '24px' }}
+      >
+        Total CHF: {total}
+      </Typography>
       <Chart data={data} height={400}>
         <ValueScale name='chfAmount' />
 
         <ArgumentAxis />
         <ValueAxis scaleName='chfAmount' />
-        <Title text={title} />
         <BarSeries
           name={'HTE Products'}
           valueField='hteProducts'

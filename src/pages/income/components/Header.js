@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 //import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
@@ -26,10 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   const classes = useStyles();
-  const { transactions } = useContext(TransactionsContext);
-  const total = transactions
-    .map((transaction) => transaction.chfAmount)
-    .reduce((acc, item) => (acc += item), 0);
 
   return (
     <React.Fragment>
@@ -39,9 +37,12 @@ const Header = (props) => {
           <Typography variant='h6' className={classes.title}>
             Dev World
           </Typography>
-          <Typography variant='h6' className={classes.title}>
-            Total CHF: {total}
-          </Typography>
+
+          <Tabs>
+            <Tab label='Income' />
+            <Tab label='Income' />
+            <Tab label='Income' />
+          </Tabs>
           <FormControlLabel
             value='start'
             control={<Switch color='primary' />}

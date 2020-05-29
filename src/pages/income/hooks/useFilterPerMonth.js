@@ -15,8 +15,6 @@ export const useFilterPerMonth = (transactions) => {
       return total;
     }
 
-    console.log(transactions);
-
     const sumByCategoryByMonth = (month, monthData) => {
       const hteProducts = [0];
       const hteServices = [0];
