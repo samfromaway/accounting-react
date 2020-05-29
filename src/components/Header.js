@@ -8,6 +8,7 @@ import Switch from '@material-ui/core/Switch';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import ThemeContext from '../context/theme/themeContext';
+import { CURRENT_YEAR } from '../constants';
 
 const useStyles = makeStyles((theme) => ({
   tab: {
@@ -30,7 +31,7 @@ const Header = (props) => {
       <AppBar position='relative'>
         <Toolbar>
           <Typography variant='h6'>Dev World</Typography>
-
+          <Typography variant='h6'>Accounting {CURRENT_YEAR}</Typography>
           <FormControlLabel
             value='start'
             control={<Switch color='primary' />}

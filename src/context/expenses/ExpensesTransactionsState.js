@@ -1,41 +1,41 @@
 import React, { useReducer, useEffect } from 'react';
-import TransactionsContext from './transactionsContext';
-import TransactionsReducer from './transactionsReducer';
+import ExpensesTransactionsContext from './expensesTransactionsContext';
+import ExpensesTransactionsReducer from './expensesTransactionsReducer';
 import { USD_TO_CHF, COP_TO_CHF } from '../../constants';
 
 // Provider Component
-const TransactionsState = ({ children }) => {
+const ExpensesTransactionsState = ({ children }) => {
   const initialState = {
     transactions: [
       {
         _id: 11073046,
         date: '2020-01-01T11:22:55.763Z',
-        description: 'dfefe',
+        description: 'exp',
         currency: 'usd',
         amount: 100,
         chfAmount: 96,
         document: 'dsdfa',
-        category: 'hteServices',
+        category: 'rent',
       },
       {
         _id: 11044066,
         date: '2020-04-29T11:22:55.763Z',
-        description: 'dfefe',
+        description: 'exp',
         currency: 'usd',
         amount: 100,
         chfAmount: 96,
         document: 'dsdfa',
-        category: 'comissions',
+        category: 'rent',
       },
       {
         _id: 13073066,
         date: '2020-04-29T11:22:55.763Z',
-        description: 'dfefe',
+        description: 'exp',
         currency: 'usd',
         amount: 200,
         chfAmount: 192,
         document: 'dsdfa',
-        category: 'hteServices',
+        category: 'online',
       },
       {
         _id: 11073566,
@@ -45,12 +45,15 @@ const TransactionsState = ({ children }) => {
         amount: 200,
         chfAmount: 192,
         document: 'dsdfa',
-        category: 'hteProducts',
+        category: 'online',
       },
     ],
   };
 
-  const [state, dispatch] = useReducer(TransactionsReducer, initialState);
+  const [state, dispatch] = useReducer(
+    ExpensesTransactionsReducer,
+    initialState
+  );
 
   const addChfValue = () => {
     state.transactions.map(
@@ -103,7 +106,7 @@ const TransactionsState = ({ children }) => {
   }
 
   return (
-    <TransactionsContext.Provider
+    <ExpensesTransactionsContext.Provider
       value={{
         transactions: state.transactions,
         deleteTransaction,
@@ -112,8 +115,8 @@ const TransactionsState = ({ children }) => {
       }}
     >
       {children}
-    </TransactionsContext.Provider>
+    </ExpensesTransactionsContext.Provider>
   );
 };
 
-export default TransactionsState;
+export default ExpensesTransactionsState;

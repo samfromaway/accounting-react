@@ -13,8 +13,8 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
-import TransactionsContext from '../context/transactions/transactionsContext';
-import { USD_TO_CHF, COP_TO_CHF } from '../constants';
+import TransactionsContext from '../context/income/incomeTransactionsContext';
+import { USD_TO_CHF, COP_TO_CHF, CURRENCIES } from '../constants';
 
 const useStyles = makeStyles((theme) => ({
   box: {
@@ -51,45 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const currencies = [
-  {
-    value: 'usd',
-    label: 'USD',
-  },
-  {
-    value: 'chf',
-    label: 'CHF',
-  },
-  {
-    value: 'cop',
-    label: 'COP',
-  },
-];
-
-const categories = [
-  {
-    value: 'hteServices',
-    label: 'HTE Services',
-  },
-  {
-    value: 'hteProducts',
-    label: 'HTE Products',
-  },
-  {
-    value: 'comissions',
-    label: 'Comissions',
-  },
-  {
-    value: 'devWorld',
-    label: 'Dev World',
-  },
-  {
-    value: 'youtube',
-    label: 'Youtube',
-  },
-];
-
-const AccountingInput = () => {
+const AccountingInput = ({ categories }) => {
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState('');
@@ -97,6 +59,8 @@ const AccountingInput = () => {
   const [chfAmount, setChfAmounts] = useState('');
   const [document, setDocument] = useState('');
   const [category, setCategory] = useState('');
+
+  const currencies = CURRENCIES;
 
   const { addTransaction } = useContext(TransactionsContext);
   const classes = useStyles();

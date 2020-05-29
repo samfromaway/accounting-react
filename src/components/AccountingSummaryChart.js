@@ -11,7 +11,7 @@ import {
 import { ValueScale, Stack, EventTracker } from '@devexpress/dx-react-chart';
 import { Typography } from '@material-ui/core';
 
-const AccountingSummaryChart = ({ title, data, total }) => {
+const AccountingSummaryChart = ({ title, data, total, categories }) => {
   return (
     <Paper style={{ position: 'relative' }}>
       <Typography variant='h6' style={{ padding: '10px 0px 10px 24px' }}>
@@ -28,48 +28,21 @@ const AccountingSummaryChart = ({ title, data, total }) => {
 
         <ArgumentAxis />
         <ValueAxis scaleName='chfAmount' />
-        <BarSeries
-          name={'HTE Products'}
-          valueField='hteProducts'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <BarSeries
-          name={'HTE Services'}
-          valueField='hteServices'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <BarSeries
-          name={'Comissions'}
-          valueField='comissions'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <BarSeries
-          name={'Dev World'}
-          valueField='devWorld'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
-        <BarSeries
-          name={'Youtube'}
-          valueField='youtube'
-          argumentField='month'
-          scaleName='chfAmount'
-        />
+        {categories.map((category) => (
+          <BarSeries
+            key={category.value}
+            name={category.label}
+            valueField={category.value}
+            argumentField='month'
+            scaleName='chfAmount'
+          />
+        ))}
         <EventTracker />
         <Tooltip />
         <Stack
           stacks={[
             {
-              series: [
-                'HTE Products',
-                'HTE Services',
-                'Comissions',
-                'Dev World',
-                'Youtube',
-              ],
+              series: categories.map((category) => category.label),
             },
           ]}
         />

@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import MaterialTable from 'material-table';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -14,7 +14,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import TransactionsContext from '../context/transactions/transactionsContext';
 
 const tableIcons = {
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -39,11 +38,11 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-const AccountingTable = () => {
-  const { transactions, deleteTransaction, editTransaction } = useContext(
-    TransactionsContext
-  );
-
+const AccountingTable = ({
+  transactions,
+  deleteTransaction,
+  editTransaction,
+}) => {
   const [columns] = useState([
     { title: 'Date', field: 'date', type: 'date', defaultSort: 'desc' },
     { title: 'Description', field: 'description' },

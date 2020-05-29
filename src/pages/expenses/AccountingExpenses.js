@@ -1,10 +1,10 @@
 import React, { Fragment, useContext } from 'react';
-import IncomeTransactionsContext from '../../context/income/incomeTransactionsContext';
+import ExpensesTransactionsContext from '../../context/expenses/expensesTransactionsContext';
 import AccountingSummary from '../../components/AccountingSummary';
 import AccountingInput from '../../components/AccountingInput';
 import AccountingTable from '../../components/AccountingTable';
 
-import { INCOME_CATEGORIES } from '../../constants';
+import { EXPENSES_CATEGORIES } from '../../constants';
 import Box from '@material-ui/core/Box';
 
 const AccountingIncome = () => {
@@ -13,17 +13,17 @@ const AccountingIncome = () => {
     addTransactions,
     deleteTransaction,
     editTransaction,
-  } = useContext(IncomeTransactionsContext);
+  } = useContext(ExpensesTransactionsContext);
 
   return (
     <Fragment>
       <AccountingSummary
         transactions={transactions}
-        title={'Income (CHF)'}
-        categories={INCOME_CATEGORIES}
+        title={'Expenses (CHF)'}
+        categories={EXPENSES_CATEGORIES}
       />
       <Box m={6} />
-      <AccountingInput categories={INCOME_CATEGORIES} />
+      <AccountingInput categories={EXPENSES_CATEGORIES} />
       <Box m={6} />
       <AccountingTable
         transactions={transactions}
