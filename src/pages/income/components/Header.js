@@ -12,16 +12,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TransactionsContext from '../context/transactions/transactionsContext';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    position: 'fixed',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
+  tab: {
     flexGrow: 1,
   },
 }));
@@ -34,14 +25,19 @@ const Header = (props) => {
       <CssBaseline />
       <AppBar position='relative'>
         <Toolbar>
-          <Typography variant='h6' className={classes.title}>
-            Dev World
-          </Typography>
+          <Typography variant='h6'>Dev World</Typography>
 
-          <Tabs>
+          <Tabs
+            //value={value}
+            //onChange={handleChange}
+            className={classes.tab}
+            indicatorColor='primary'
+            textColor='primary'
+            centered
+          >
             <Tab label='Income' />
-            <Tab label='Income' />
-            <Tab label='Income' />
+            <Tab label='Expenses' />
+            <Tab label='Summary' />
           </Tabs>
           <FormControlLabel
             value='start'

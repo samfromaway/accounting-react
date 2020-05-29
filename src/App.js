@@ -47,3 +47,6 @@ export default App;
 // left align title chart
 // style cancle button
 //proptypes
+// better tooltip chart
+// tooltip buttons input
+//

@@ -3,7 +3,14 @@
 Because of the table by material UI strict mode had to be disabled because of an error.
 
 ## Adding New Category
+
 When adding a new category make sure to add the category to the required functions in the chart section.
+
+## CHF FX Calculation
+
+The amount of CHF will be generated the first time with calculation the fx rate when the new transaction get's added.
+After the transaction is in the table, the transaction get's recalculated with the current ex-rate value.
+So it's NOT a static value, it's still gets updated while in the table.
 
 In the project directory, you can run:
 
