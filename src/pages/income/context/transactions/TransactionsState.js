@@ -9,7 +9,7 @@ const TransactionsState = ({ children }) => {
     transactions: [
       {
         _id: 11073046,
-        date: '2020-05-29',
+        date: '2020-04-29T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
         amount: 100,
@@ -19,7 +19,7 @@ const TransactionsState = ({ children }) => {
       },
       {
         _id: 11044066,
-        date: '2020-05-29',
+        date: '2020-04-29T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
         amount: 100,
@@ -29,7 +29,7 @@ const TransactionsState = ({ children }) => {
       },
       {
         _id: 13073066,
-        date: '2020-05-29',
+        date: '2020-04-29T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
         amount: 200,
@@ -39,7 +39,7 @@ const TransactionsState = ({ children }) => {
       },
       {
         _id: 11073566,
-        date: '2020-05-29',
+        date: '2020-03-29T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
         amount: 200,
@@ -62,9 +62,6 @@ const TransactionsState = ({ children }) => {
     );
   };
 
-  // function to recalculate if currency is
-  // still with the right ex-rate
-  // even after editing
   const fxCalcChf = (amount, currency) => {
     switch (currency) {
       case 'usd':

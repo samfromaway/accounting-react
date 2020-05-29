@@ -102,7 +102,7 @@ const AccountingInput = () => {
     const newTransaction = {
       // id will be generated from mongoDB
       _id: Math.floor(Math.random() * 100000000),
-      date,
+      date: date.toISOString(),
       description,
       currency,
       amount: +amount,
