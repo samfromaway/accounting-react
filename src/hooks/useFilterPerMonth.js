@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CURRENT_YEAR } from '../../../constants';
+import { CURRENT_YEAR } from '../constants';
 
 export const useFilterPerMonth = (transactions) => {
   const [chartData, setChartData] = useState([]);

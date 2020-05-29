@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import ThemeContext from '../pages/income/context/theme/themeContext';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 

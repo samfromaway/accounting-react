@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import AccountingSummary from './AccountingSummary';
-import AccountingInput from './AccountingInput';
-import AccountingTable from './AccountingTable';
+import AccountingSummary from '../../components/AccountingSummary';
+import AccountingInput from '../../components/AccountingInput';
+import AccountingTable from '../../components/AccountingTable';
 
 import Box from '@material-ui/core/Box';
 

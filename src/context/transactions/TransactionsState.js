@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import TransactionsContext from './transactionsContext';
 import TransactionsReducer from './transactionsReducer';
-import { USD_TO_CHF, COP_TO_CHF } from '../../../../constants';
+import { USD_TO_CHF, COP_TO_CHF } from '../../constants';
 
 // Provider Component
 const TransactionsState = ({ children }) => {

@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
 import TransactionsContext from '../context/transactions/transactionsContext';
-import { USD_TO_CHF, COP_TO_CHF } from '../../../constants';
+import { USD_TO_CHF, COP_TO_CHF } from '../constants';
 
 const useStyles = makeStyles((theme) => ({
   box: {

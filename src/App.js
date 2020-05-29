@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import Header from './pages/income/components/Header';
-import AccountingSummary from './pages/income/components/AccountingSummary';
-import AccountingInput from './pages/income/components/AccountingInput';
-import AccountingIncome from './pages/income/components/AccountingIncome';
-import TransactionsState from './pages/income/context/transactions/TransactionsState';
-import ThemeState from './pages/income/context/theme/ThemeState';
+import Header from './components/Header';
+import AccountingSummary from './components/AccountingSummary';
+import AccountingInput from './components/AccountingInput';
+import AccountingIncome from './pages/income/AccountingIncome';
+import TransactionsState from './context/transactions/TransactionsState';
+import ThemeState from './context/theme/ThemeState';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Theme from './styles/theme';
 import Container from '@material-ui/core/Container';
