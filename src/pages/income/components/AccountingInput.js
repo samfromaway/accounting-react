@@ -106,6 +106,7 @@ const AccountingInput = () => {
       description,
       currency,
       amount: +amount,
+      chfAmount: +chfAmount,
       document,
       category,
     };

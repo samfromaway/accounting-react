@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import {
   Chart,
@@ -10,14 +10,11 @@ import {
   Legend,
 } from '@devexpress/dx-react-chart-material-ui';
 import { ValueScale, Stack, EventTracker } from '@devexpress/dx-react-chart';
-import TransactionsContext from '../context/transactions/transactionsContext';
 
 const AccountingSummaryChart = ({ title, data }) => {
-  const { transactions } = useContext(TransactionsContext);
-
   return (
     <Paper>
-      <Chart data={data} height={500}>
+      <Chart data={data} height={400}>
         <ValueScale name='chfAmount' />
 
         <ArgumentAxis />
@@ -68,7 +65,7 @@ const AccountingSummaryChart = ({ title, data }) => {
             },
           ]}
         />
-        <Legend position={'bottom'} />
+        <Legend position={'right'} />
       </Chart>
     </Paper>
   );

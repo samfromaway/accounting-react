@@ -72,7 +72,7 @@ const AccountingTable = () => {
       title: 'Category',
       field: 'category',
       lookup: {
-        hteServices: 'HTE Servcies',
+        hteServices: 'HTE Services',
         hteProducts: 'HTE Products',
         comissions: 'Comissions',
         devWorld: 'Dev World',

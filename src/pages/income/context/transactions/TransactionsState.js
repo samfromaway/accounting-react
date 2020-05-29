@@ -8,34 +8,44 @@ const TransactionsState = ({ children }) => {
   const initialState = {
     transactions: [
       {
-        _id: 1111,
-        amount: 111,
-        category: 'hteProducts',
-        currency: 'cop',
-        chfAmount: 0.03,
-        date: '2020-01-02',
-        description: '111desc',
-        document: 'Invoice 1122',
-      },
-      {
-        _id: 2222,
-        amount: 222,
-        category: 'hteProducts',
+        _id: 11073046,
+        date: '2020-05-29',
+        description: 'dfefe',
         currency: 'usd',
-        chfAmount: 213.12,
-        date: '2020-02-15',
-        description: '222desc',
-        document: 'Invoice 11',
-      },
-      {
-        _id: 3333,
-        amount: 333,
+        amount: 100,
+        chfAmount: 96,
+        document: 'dsdfa',
         category: 'hteServices',
+      },
+      {
+        _id: 11044066,
+        date: '2020-05-29',
+        description: 'dfefe',
         currency: 'usd',
-        chfAmount: 319.68,
-        date: '2020-01-15',
-        description: '333desc',
-        document: 'Invoice 1122',
+        amount: 100,
+        chfAmount: 96,
+        document: 'dsdfa',
+        category: 'comissions',
+      },
+      {
+        _id: 13073066,
+        date: '2020-05-29',
+        description: 'dfefe',
+        currency: 'usd',
+        amount: 200,
+        chfAmount: 192,
+        document: 'dsdfa',
+        category: 'hteServices',
+      },
+      {
+        _id: 11073566,
+        date: '2020-05-29',
+        description: 'dfefe',
+        currency: 'usd',
+        amount: 200,
+        chfAmount: 192,
+        document: 'dsdfa',
+        category: 'hteProducts',
       },
     ],
   };
@@ -52,6 +62,9 @@ const TransactionsState = ({ children }) => {
     );
   };
 
+  // function to recalculate if currency is
+  // still with the right ex-rate
+  // even after editing
   const fxCalcChf = (amount, currency) => {
     switch (currency) {
       case 'usd':
