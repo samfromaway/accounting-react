@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment } from 'react';
 import AccountingSummaryChart from './AccountingSummaryChart';
 import { useFilterPerMonth } from '../hooks/useFilterPerMonth';
 import { Grid } from '@material-ui/core';

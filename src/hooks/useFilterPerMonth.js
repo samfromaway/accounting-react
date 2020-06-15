@@ -15,7 +15,7 @@ export const useFilterPerMonth = (transactions, categories) => {
 
     const categorySum = (array) => {
       const sum = array
-        .map((e) => e.amount)
+        .map((e) => e.chfAmount)
         .reduce((acc, item) => (acc += item), 0);
       return sum;
     };
@@ -51,7 +51,6 @@ export const useFilterPerMonth = (transactions, categories) => {
       categoryByMonth('Nov', 10),
       categoryByMonth('Dec', 11),
     ];
-    console.log(data);
 
     setChartData(data);
   }, [transactions]);
