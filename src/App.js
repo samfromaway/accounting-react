@@ -18,9 +18,16 @@ const App = () => {
         <ThemeState>
           <ThemeProvider theme={Theme}>
             <Header />
+            <h1>INCOME</h1>
             <Box m={8} />
             <Container fixed maxWidth='lg'>
               <AccountingIncome />
+            </Container>
+            <Box m={10} />
+            <h1>EXPENSES</h1>
+            <Box m={8} />
+            <Container fixed maxWidth='lg'>
+              <AccountingExpenses />
             </Container>
             <Box m={10} />
           </ThemeProvider>

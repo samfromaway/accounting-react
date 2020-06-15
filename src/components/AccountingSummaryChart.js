@@ -12,6 +12,7 @@ import { ValueScale, Stack, EventTracker } from '@devexpress/dx-react-chart';
 import { Typography } from '@material-ui/core';
 
 const AccountingSummaryChart = ({ title, data, total, categories }) => {
+  console.log(data);
   return (
     <Paper style={{ position: 'relative' }}>
       <Typography variant='h6' style={{ padding: '10px 0px 10px 24px' }}>

@@ -15,6 +15,7 @@ export const CURRENCIES = [
     label: 'COP',
   },
 ];
+
 export const INCOME_CATEGORIES = [
   {
     value: 'hteServices',
@@ -35,6 +36,10 @@ export const INCOME_CATEGORIES = [
   {
     value: 'youtube',
     label: 'Youtube',
+  },
+  {
+    value: 'youtube2',
+    label: 'Youtube2',
   },
 ];
 

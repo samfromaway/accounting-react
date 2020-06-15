@@ -30,6 +30,7 @@ const AccountingIncome = () => {
         addTransactions={addTransactions}
         deleteTransaction={deleteTransaction}
         editTransaction={editTransaction}
+        categories={EXPENSES_CATEGORIES}
       />
     </Fragment>
   );

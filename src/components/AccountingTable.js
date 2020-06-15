@@ -14,6 +14,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { CURRENCIES } from '../constants';
 
 const tableIcons = {
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -42,14 +43,31 @@ const AccountingTable = ({
   transactions,
   deleteTransaction,
   editTransaction,
+  categories,
 }) => {
-  const [columns] = useState([
+  const currenciesFormated = () => {
+    const currenciesFormated = {};
+    CURRENCIES.forEach((e) => {
+      currenciesFormated[e.value] = e.label;
+    });
+    return currenciesFormated;
+  };
+
+  const categoriesFormated = () => {
+    const categoriesFormated = {};
+    categories.forEach((e) => {
+      categoriesFormated[e.value] = e.label;
+    });
+    return categoriesFormated;
+  };
+
+  const columns = [
     { title: 'Date', field: 'date', type: 'date', defaultSort: 'desc' },
     { title: 'Description', field: 'description' },
     {
       title: 'Currency',
       field: 'currency',
-      lookup: { chf: 'CHF', usd: 'USD', cop: 'COP' },
+      lookup: currenciesFormated(),
     },
 
     {
@@ -70,15 +88,9 @@ const AccountingTable = ({
     {
       title: 'Category',
       field: 'category',
-      lookup: {
-        hteServices: 'HTE Services',
-        hteProducts: 'HTE Products',
-        comissions: 'Comissions',
-        devWorld: 'Dev World',
-        youtube: 'Youtube',
-      },
+      lookup: categoriesFormated(),
     },
-  ]);
+  ];
 
   return (
     <MaterialTable
