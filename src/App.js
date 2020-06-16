@@ -21,7 +21,7 @@ const App = () => {
             <Router>
               <Header />
               <Switch>
-                <Route exact path='/'>
+                <Route exact path='/income'>
                   <Box m={8} />
                   <Container fixed maxWidth='lg'>
                     <AccountingIncome />
@@ -47,6 +47,7 @@ const App = () => {
 export default App;
 
 //Charts
+//css baseline?
 // Button Add confimration
 // CHf total input style
 // 100,000 trennzeichen
