@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Switch from '@material-ui/core/Switch';
@@ -136,7 +136,7 @@ export default function MiniDrawer({ themeMode, toggleDarkMode }) {
           </Typography>
           <FormControlLabel
             value='start'
-            control={<Switch color='primary.dark' />}
+            control={<Switch color='secondary' />}
             label='Light/Dark'
             labelPlacement='end'
             checked={themeMode}
