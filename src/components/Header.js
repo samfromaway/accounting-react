@@ -32,6 +32,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    flexGrow: 1,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -89,6 +90,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  title: {
+    flexGrow: 1,
+  },
   listItem: {
     paddingLeft: '23px',
   },
@@ -133,13 +137,13 @@ export default function MiniDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' noWrap>
+          <Typography variant='h6' noWrap className={classes.title}>
             Accounting {CURRENT_YEAR}
           </Typography>
           <FormControlLabel
             value='start'
-            control={<Switch color='primary' />}
-            label='Toggle light/dark theme'
+            control={<Switch color='secondary' />}
+            label='Light/Dark'
             labelPlacement='end'
             checked={themeMode}
             onChange={toggleDarkMode}
