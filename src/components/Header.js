@@ -24,7 +24,6 @@ import InputIcon from '@material-ui/icons/Input';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
-import ThemeContext from '../context/theme/themeContext';
 import { CURRENT_YEAR } from '../constants';
 
 const drawerWidth = 240;
@@ -98,11 +97,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer() {
+export default function MiniDrawer({ themeMode, toggleDarkMode }) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const { themeMode, setThemeMode } = useContext(ThemeContext);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -110,10 +108,6 @@ export default function MiniDrawer() {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-
-  const toggleDarkMode = () => {
-    setThemeMode((prevTheme) => !prevTheme);
   };
 
   return (
@@ -142,7 +136,7 @@ export default function MiniDrawer() {
           </Typography>
           <FormControlLabel
             value='start'
-            control={<Switch color='secondary' />}
+            control={<Switch color='primary.dark' />}
             label='Light/Dark'
             labelPlacement='end'
             checked={themeMode}
