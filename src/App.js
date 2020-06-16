@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import AccountingIncome from './pages/income/AccountingIncome';
 import AccountingExpenses from './pages/expenses/AccountingExpenses';
@@ -17,19 +18,25 @@ const App = () => {
       <ExpensesTransactionsState>
         <ThemeState>
           <ThemeProvider theme={Theme}>
-            <Header />
-            <h1>INCOME</h1>
-            <Box m={8} />
-            <Container fixed maxWidth='lg'>
-              <AccountingIncome />
-            </Container>
-            <Box m={10} />
-            <h1>EXPENSES</h1>
-            <Box m={8} />
-            <Container fixed maxWidth='lg'>
-              <AccountingExpenses />
-            </Container>
-            <Box m={10} />
+            <Router>
+              <Header />
+              <Switch>
+                <Route exact path='/'>
+                  <Box m={8} />
+                  <Container fixed maxWidth='lg'>
+                    <AccountingIncome />
+                  </Container>
+                  <Box m={10} />
+                </Route>
+                <Route exact path='/expenses'>
+                  <Box m={8} />
+                  <Container fixed maxWidth='lg'>
+                    <AccountingExpenses />
+                  </Container>
+                  <Box m={10} />
+                </Route>
+              </Switch>
+            </Router>
           </ThemeProvider>
         </ThemeState>
       </ExpensesTransactionsState>
