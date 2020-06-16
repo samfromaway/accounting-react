@@ -18,7 +18,7 @@ const AccountingIncome = () => {
 
   return (
     <Fragment>
-      <Box m={8} />
+      <Box m={14} />
       <Container fixed maxWidth='lg'>
         <AccountingSummary
           transactions={transactions}
