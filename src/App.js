@@ -22,18 +22,10 @@ const App = () => {
               <Header />
               <Switch>
                 <Route exact path='/income'>
-                  <Box m={8} />
-                  <Container fixed maxWidth='lg'>
-                    <AccountingIncome />
-                  </Container>
-                  <Box m={10} />
+                  <AccountingIncome />
                 </Route>
                 <Route exact path='/expenses'>
-                  <Box m={8} />
-                  <Container fixed maxWidth='lg'>
-                    <AccountingExpenses />
-                  </Container>
-                  <Box m={10} />
+                  <AccountingExpenses />
                 </Route>
               </Switch>
             </Router>
