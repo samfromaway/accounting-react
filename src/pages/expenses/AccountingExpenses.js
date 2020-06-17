@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import { Typography } from '@material-ui/core';
 import ExpensesTransactionsContext from '../../context/expenses/expensesTransactionsContext';
 import AccountingSummary from '../../components/AccountingSummary';
 import AccountingInput from '../../components/AccountingInput';
@@ -18,8 +19,16 @@ const AccountingIncome = () => {
 
   return (
     <Fragment>
-      <Box m={14} />
+      <Box m={11} />
       <Container fixed maxWidth='lg'>
+        <Typography
+          variant='h4'
+          align='center'
+          style={{ paddingBottom: '20px' }}
+        >
+          Expenses
+        </Typography>
+
         <AccountingSummary
           transactions={transactions}
           title={'Expenses (CHF)'}

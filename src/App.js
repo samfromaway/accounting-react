@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import AccountingIncome from './pages/income/AccountingIncome';
+import Home from './pages/home/Home';
 import AccountingExpenses from './pages/expenses/AccountingExpenses';
 import IncomeTransactionsState from './context/income/IncomeTransactionsState';
 import ExpensesTransactionsState from './context/expenses/ExpensesTransactionsState';
@@ -34,6 +35,9 @@ const App = () => {
             <Switch>
               <Route exact path='/income'>
                 <AccountingIncome />
+              </Route>
+              <Route exact path='/'>
+                <Home />
               </Route>
               <Route exact path='/expenses'>
                 <AccountingExpenses />

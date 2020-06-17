@@ -20,6 +20,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
 import InputIcon from '@material-ui/icons/Input';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
@@ -168,6 +169,12 @@ export default function MiniDrawer({ themeMode, toggleDarkMode }) {
         </div>
         <Divider />
         <List>
+          <ListItem button component={Link} to='/' className={classes.listItem}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary='Home' />
+          </ListItem>
           <ListItem
             button
             component={Link}
