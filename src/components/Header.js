@@ -20,8 +20,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import InputIcon from '@material-ui/icons/Input';
+import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 
@@ -137,7 +138,7 @@ export default function MiniDrawer({ themeMode, toggleDarkMode }) {
           </Typography>
           <FormControlLabel
             value='start'
-            control={<Switch color='secondary' />}
+            control={<Switch color='default' />}
             label='Light/Dark'
             labelPlacement='end'
             checked={themeMode}
@@ -171,9 +172,9 @@ export default function MiniDrawer({ themeMode, toggleDarkMode }) {
         <List>
           <ListItem button component={Link} to='/' className={classes.listItem}>
             <ListItemIcon>
-              <HomeIcon />
+              <DashboardIcon />
             </ListItemIcon>
-            <ListItemText primary='Home' />
+            <ListItemText primary='Dashboard' />
           </ListItem>
           <ListItem
             button
@@ -208,8 +209,19 @@ export default function MiniDrawer({ themeMode, toggleDarkMode }) {
             </ListItemIcon>
             <ListItemText primary='Capital' />
           </ListItem>
+          <Divider />
+          <ListItem
+            button
+            component={Link}
+            to='/settings'
+            className={classes.listItem}
+          >
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary='Settings' />
+          </ListItem>
         </List>
-        <Divider />
       </Drawer>
     </div>
   );

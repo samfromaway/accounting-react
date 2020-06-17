@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
 import TransactionsContext from '../context/income/incomeTransactionsContext';
@@ -34,9 +35,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginBottom: '-38px',
   },
-  fabCancel: {
+  cancelBox: {
+    display: 'flex',
     position: 'absolute',
-    top: '10px',
+    top: '13px',
     right: '10px',
   },
   chfValue: {
@@ -214,15 +216,16 @@ const AccountingInput = ({ categories }) => {
               <AddIcon />
             </Fab>
           </Box>
-          <Fab
+          <Button
+            variant='contained'
             color='secondary'
-            aria-label='cancel'
-            className={classes.fabCancel}
+            className={classes.cancelBox}
             size='small'
             onClick={resetData}
+            startIcon={<CancelIcon />}
           >
-            <CancelIcon />
-          </Fab>
+            Cancel
+          </Button>
         </form>
       </Paper>
     </MuiPickersUtilsProvider>
