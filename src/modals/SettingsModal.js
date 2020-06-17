@@ -8,26 +8,12 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CancelIcon from '@material-ui/icons/Cancel';
-import Chip from '@material-ui/core/Chip';
-import Paper from '@material-ui/core/Paper';
+import ChipsCategories from '../components/ChipsCategories';
 import IncomeTransactionsContext from '../context/income/incomeTransactionsContext';
 import ExpensesTransactionsContext from '../context/expenses/expensesTransactionsContext';
 import CategoriesContext from '../context/categories/categoriesContext';
 
-//https://material-ui.com/components/chips/
-
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-    listStyle: 'none',
-    padding: theme.spacing(0.5),
-    margin: 0,
-  },
-  chip: {
-    margin: theme.spacing(0.5),
-  },
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -45,38 +31,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ChipsArray = ({ categories, transactions, deleteCategory }) => {
-  const classes = useStyles();
-
-  const categoriesInUse = transactions.map(
-    (transaction) => transaction.category
-  );
-
-  const handleDelete = (chipToDelete) => () => {
-    deleteCategory(chipToDelete.value);
-  };
-
-  return (
-    <Paper component='ul' className={classes.root}>
-      {categories.map((data) => {
-        return (
-          <li key={data.value}>
-            <Chip
-              label={data.label}
-              onDelete={
-                categoriesInUse.indexOf(data.value) > -1
-                  ? null
-                  : handleDelete(data)
-              }
-              className={classes.chip}
-            />
-          </li>
-        );
-      })}
-    </Paper>
-  );
-};
-
 const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
   const [newIncomeCategory, setNewIncomeCategory] = useState('');
   const [newExpensesCategory, setNewExpensesCategory] = useState('');
@@ -90,7 +44,6 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
     deleteExpensesCategory,
     addExpensesCategory,
   } = useContext(CategoriesContext);
-  console.log(incomeCategories);
   const classes = useStyles();
 
   const handleAddIncomeCategory = () => {
@@ -148,7 +101,7 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
             <Typography>
               If the category is in use it can't be deleted.
             </Typography>
-            <ChipsArray
+            <ChipsCategories
               categories={incomeCategories}
               transactions={incomeTransactions}
               deleteCategory={deleteIncomeCategory}
@@ -176,7 +129,7 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
             <Typography>
               If the category is in use it can't be deleted.
             </Typography>
-            <ChipsArray
+            <ChipsCategories
               categories={expensesCategories}
               transactions={expensesTransactions}
               deleteCategory={deleteExpensesCategory}

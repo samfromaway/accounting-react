@@ -72,7 +72,7 @@ const App = () => {
 
 export default App;
 
-// Modal Setting
+// Modal don't allow to add categories that already exist
 //Charts tooltip
 // max and min display size
 // permanent scrollbar
