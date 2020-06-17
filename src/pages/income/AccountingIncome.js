@@ -7,7 +7,6 @@ import AccountingSummary from '../../components/AccountingSummary';
 import AccountingInput from '../../components/AccountingInput';
 import AccountingTable from '../../components/AccountingTable';
 import CategoriesContext from '../../context/categories/categoriesContext';
-import { INCOME_CATEGORIES } from '../../constants';
 
 const AccountingIncome = () => {
   const {
@@ -32,7 +31,7 @@ const AccountingIncome = () => {
         <AccountingSummary
           transactions={incomeTransactions}
           title={'Income (CHF)'}
-          categories={incomeCategories} // this is the issue
+          categories={incomeCategories}
         />
         <Box m={6} />
         <AccountingInput categories={incomeCategories} />

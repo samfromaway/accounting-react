@@ -28,6 +28,7 @@ const AccountingSummaryChart = ({ title, data, total, categories }) => {
 
         <ArgumentAxis />
         <ValueAxis scaleName='chfAmount' />
+
         {categories.map((category) => (
           <BarSeries
             key={category.value}

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 export const useFilterPerMonth = (transactions, categories) => {
   const [chartData, setChartData] = useState([]);
   const categoryValues = categories.map((category) => category.value);
-
   useEffect(() => {
     const categoriesInMonth = (array, filterCategory, filterMonth) => {
       return array.filter(
@@ -53,6 +52,6 @@ export const useFilterPerMonth = (transactions, categories) => {
     ];
 
     setChartData(data);
-  }, [transactions]);
+  }, [transactions, categories]);
   return chartData;
 };

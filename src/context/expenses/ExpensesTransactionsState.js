@@ -8,7 +8,7 @@ const ExpensesTransactionsState = ({ children }) => {
   const initialState = {
     transactions: [
       {
-        _id: 11073046,
+        _id: 1107304446,
         date: '2020-01-01T11:22:55.763Z',
         description: 'exp',
         currency: 'usd',
@@ -18,7 +18,7 @@ const ExpensesTransactionsState = ({ children }) => {
         category: 'rent',
       },
       {
-        _id: 11044066,
+        _id: 1104443066,
         date: '2020-04-29T11:22:55.763Z',
         description: 'exp',
         currency: 'usd',
@@ -28,17 +28,17 @@ const ExpensesTransactionsState = ({ children }) => {
         category: 'rent',
       },
       {
-        _id: 13073066,
+        _id: 130733066,
         date: '2020-04-29T11:22:55.763Z',
         description: 'exp',
         currency: 'usd',
-        amount: 200,
+        amount: 2002,
         chfAmount: 192,
         document: 'dsdfa',
         category: 'online',
       },
       {
-        _id: 11073566,
+        _id: 1107366566,
         date: '2020-03-29T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',

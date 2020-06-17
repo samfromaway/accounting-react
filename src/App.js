@@ -15,7 +15,7 @@ import './app.css';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [openSettingsModal, setOpenSettingsModal] = useState(true);
+  const [openSettingsModal, setOpenSettingsModal] = useState(false);
 
   const handleOpenSettingsModal = () => {
     setOpenSettingsModal(true);
@@ -76,7 +76,6 @@ export default App;
 //Charts tooltip
 // max and min display size
 // permanent scrollbar
-//css baseline?
 // Button Add confimration
 // CHf total input style
 // 100,000 trennzeichen
@@ -88,6 +87,8 @@ export default App;
 // better tooltip chart
 // tooltip buttons input
 // export to pdf
+//css baseline?
+
 
 //Similar App
 //https://codesandbox.io/s/dark-theme-switch-tp37c?from-embed=&file=/src/Dashboard/Dashboard.js:5322-5339

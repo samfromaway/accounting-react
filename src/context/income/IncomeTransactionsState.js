@@ -15,7 +15,7 @@ const IncomeTransactionsState = ({ children }) => {
         amount: 100,
         chfAmount: 96,
         document: 'dsdfa',
-        category: 'hteServices',
+        category: 'hteservices',
       },
       {
         _id: 11044066,
@@ -35,7 +35,7 @@ const IncomeTransactionsState = ({ children }) => {
         amount: 200,
         chfAmount: 192,
         document: 'dsdfa',
-        category: 'hteServices',
+        category: 'hteservices',
       },
       {
         _id: 11073566,
@@ -45,7 +45,7 @@ const IncomeTransactionsState = ({ children }) => {
         amount: 200,
         chfAmount: 192,
         document: 'dsdfa',
-        category: 'hteProducts',
+        category: 'hteproducts',
       },
     ],
   };

@@ -72,7 +72,7 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
-        timeout: 500,
+        timeout: 100,
       }}
     >
       <Fade in={openSettingsModal}>
