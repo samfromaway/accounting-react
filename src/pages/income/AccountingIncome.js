@@ -6,7 +6,7 @@ import IncomeTransactionsContext from '../../context/income/incomeTransactionsCo
 import AccountingSummary from '../../components/AccountingSummary';
 import AccountingInput from '../../components/AccountingInput';
 import AccountingTable from '../../components/AccountingTable';
-
+import CategoriesContext from '../../context/categories/categoriesContext';
 import { INCOME_CATEGORIES } from '../../constants';
 
 const AccountingIncome = () => {
@@ -16,6 +16,7 @@ const AccountingIncome = () => {
     deleteTransaction,
     editTransaction,
   } = useContext(IncomeTransactionsContext);
+  const { incomeCategories } = useContext(CategoriesContext);
 
   return (
     <Fragment>
@@ -31,17 +32,17 @@ const AccountingIncome = () => {
         <AccountingSummary
           transactions={incomeTransactions}
           title={'Income (CHF)'}
-          categories={INCOME_CATEGORIES}
+          categories={incomeCategories} // this is the issue
         />
         <Box m={6} />
-        <AccountingInput categories={INCOME_CATEGORIES} />
+        <AccountingInput categories={incomeCategories} />
         <Box m={6} />
         <AccountingTable
           transactions={incomeTransactions}
           addTransactions={addTransactions}
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}
-          categories={INCOME_CATEGORIES}
+          categories={incomeCategories}
         />
       </Container>
       <Box m={10} />

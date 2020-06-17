@@ -6,8 +6,7 @@ import ExpensesTransactionsContext from '../../context/expenses/expensesTransact
 import AccountingSummary from '../../components/AccountingSummary';
 import AccountingInput from '../../components/AccountingInput';
 import AccountingTable from '../../components/AccountingTable';
-
-import { EXPENSES_CATEGORIES } from '../../constants';
+import CategoriesContext from '../../context/categories/categoriesContext';
 
 const AccountingIncome = () => {
   const {
@@ -16,6 +15,7 @@ const AccountingIncome = () => {
     deleteTransaction,
     editTransaction,
   } = useContext(ExpensesTransactionsContext);
+  const { expensesCategories } = useContext(CategoriesContext);
 
   return (
     <Fragment>
@@ -32,17 +32,17 @@ const AccountingIncome = () => {
         <AccountingSummary
           transactions={expensesTransactions}
           title={'Expenses (CHF)'}
-          categories={EXPENSES_CATEGORIES}
+          categories={expensesCategories}
         />
         <Box m={6} />
-        <AccountingInput categories={EXPENSES_CATEGORIES} />
+        <AccountingInput categories={expensesCategories} />
         <Box m={6} />
         <AccountingTable
           transactions={expensesTransactions}
           addTransactions={addTransactions}
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}
-          categories={EXPENSES_CATEGORIES}
+          categories={expensesCategories}
         />
       </Container>
       <Box m={10} />
