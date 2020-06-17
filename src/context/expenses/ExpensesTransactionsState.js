@@ -108,7 +108,7 @@ const ExpensesTransactionsState = ({ children }) => {
   return (
     <ExpensesTransactionsContext.Provider
       value={{
-        transactions: state.transactions,
+        expensesTransactions: state.transactions,
         deleteTransaction,
         addTransaction,
         editTransaction,

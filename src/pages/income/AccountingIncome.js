@@ -11,7 +11,7 @@ import { INCOME_CATEGORIES } from '../../constants';
 
 const AccountingIncome = () => {
   const {
-    transactions,
+    incomeTransactions,
     addTransactions,
     deleteTransaction,
     editTransaction,
@@ -29,7 +29,7 @@ const AccountingIncome = () => {
           Income
         </Typography>
         <AccountingSummary
-          transactions={transactions}
+          transactions={incomeTransactions}
           title={'Income (CHF)'}
           categories={INCOME_CATEGORIES}
         />
@@ -37,7 +37,7 @@ const AccountingIncome = () => {
         <AccountingInput categories={INCOME_CATEGORIES} />
         <Box m={6} />
         <AccountingTable
-          transactions={transactions}
+          transactions={incomeTransactions}
           addTransactions={addTransactions}
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}

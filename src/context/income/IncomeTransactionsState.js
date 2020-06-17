@@ -105,7 +105,7 @@ const IncomeTransactionsState = ({ children }) => {
   return (
     <IncomeTransactionsContext.Provider
       value={{
-        transactions: state.transactions,
+        incomeTransactions: state.transactions,
         deleteTransaction,
         addTransaction,
         editTransaction,
