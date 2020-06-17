@@ -52,7 +52,8 @@ const App = () => {
 
 export default App;
 
-//Charts
+//Charts tooltip
+// max and min display size
 //css baseline?
 // Button Add confimration
 // CHf total input style
