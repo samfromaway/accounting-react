@@ -21,8 +21,7 @@ const App = () => {
   const theme = createMuiTheme({
     palette: {
       type: isDarkMode ? 'dark' : 'light',
-      primary: { main: '#2c63bf', light: '#a6c7ff', dark: '#002159' },
-      //secondary: { light: '#0066ff', main: '#0044ff' },
+      // primary: { main: '#2c63bf', light: '#a6c7ff', dark: '#002159' },
     },
   });
 
@@ -52,6 +51,7 @@ const App = () => {
 
 export default App;
 
+// Modal Setting
 //Charts tooltip
 // max and min display size
 // permanent scrollbar
