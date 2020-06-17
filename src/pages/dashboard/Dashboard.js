@@ -71,7 +71,6 @@ export default function Dashboard() {
           </Paper>
         </Link>
       </div>
-      <Modal />
     </Fragment>
   );
 }

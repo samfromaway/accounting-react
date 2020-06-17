@@ -99,7 +99,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer({ themeMode, toggleDarkMode }) {
+export default function MiniDrawer({
+  themeMode,
+  toggleDarkMode,
+  handleOpenSettingsModal,
+}) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -212,8 +216,7 @@ export default function MiniDrawer({ themeMode, toggleDarkMode }) {
           <Divider />
           <ListItem
             button
-            component={Link}
-            to='/settings'
+            onClick={handleOpenSettingsModal}
             className={classes.listItem}
           >
             <ListItemIcon>
