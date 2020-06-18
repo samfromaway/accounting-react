@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import {
@@ -14,7 +14,8 @@ import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
-import TransactionsContext from '../context/income/incomeTransactionsContext';
+import { currencyEx } from '../functions/currencyEx';
+
 import { USD_TO_CHF, COP_TO_CHF, CURRENCIES } from '../constants';
 
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AccountingInput = ({ categories }) => {
+const AccountingInput = ({ categories, addTransaction }) => {
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState('');
@@ -64,7 +65,6 @@ const AccountingInput = ({ categories }) => {
 
   const currencies = CURRENCIES;
 
-  const { addTransaction } = useContext(TransactionsContext);
   const classes = useStyles();
 
   const onInputSubmit = (e) => {
@@ -88,28 +88,28 @@ const AccountingInput = ({ categories }) => {
 
   const handleAmountChange = (e) => {
     setAmount(e.target.value);
-    setChfAmounts(fxCalcChf(e.target.value, currency));
+    setChfAmounts(currencyEx(e.target.value, currency));
   };
 
   const handleCurrencyChange = (e) => {
     setCurrency(e.target.value);
-    setChfAmounts(fxCalcChf(amount, e.target.value));
+    setChfAmounts(currencyEx(amount, e.target.value));
   };
 
-  const fxCalcChf = (amount, currency) => {
-    if (amount && currency) {
-      switch (currency) {
-        case 'usd':
-          return USD_TO_CHF * amount;
-        case 'cop':
-          return COP_TO_CHF * amount;
-        case 'chf':
-          return amount;
-        default:
-          return 'Currency/Amount missing';
-      }
-    }
-  };
+  // const fxCalcChf = (amount, currency) => {
+  //   if (amount && currency) {
+  //     switch (currency) {
+  //       case 'usd':
+  //         return USD_TO_CHF * amount;
+  //       case 'cop':
+  //         return COP_TO_CHF * amount;
+  //       case 'chf':
+  //         return amount;
+  //       default:
+  //         return 'Currency/Amount missing';
+  //     }
+  //   }
+  // };
 
   const resetData = () => {
     setDate(new Date());

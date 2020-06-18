@@ -8,15 +8,14 @@ import AccountingInput from '../../components/AccountingInput';
 import AccountingTable from '../../components/AccountingTable';
 import CategoriesContext from '../../context/categories/categoriesContext';
 
-const AccountingIncome = () => {
+const AccountingExpenses = () => {
   const {
     expensesTransactions,
-    addTransactions,
+    addTransaction,
     deleteTransaction,
     editTransaction,
   } = useContext(ExpensesTransactionsContext);
   const { expensesCategories } = useContext(CategoriesContext);
-
   return (
     <Fragment>
       <Box m={11} />
@@ -28,18 +27,19 @@ const AccountingIncome = () => {
         >
           Expenses
         </Typography>
-
         <AccountingSummary
           transactions={expensesTransactions}
           title={'Expenses (CHF)'}
           categories={expensesCategories}
         />
         <Box m={6} />
-        <AccountingInput categories={expensesCategories} />
+        <AccountingInput
+          categories={expensesCategories}
+          addTransaction={addTransaction}
+        />
         <Box m={6} />
         <AccountingTable
           transactions={expensesTransactions}
-          addTransactions={addTransactions}
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}
           categories={expensesCategories}
@@ -50,4 +50,4 @@ const AccountingIncome = () => {
   );
 };
 
-export default AccountingIncome;
+export default AccountingExpenses;

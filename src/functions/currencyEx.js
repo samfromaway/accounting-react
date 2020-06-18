@@ -1,6 +1,6 @@
-import { USD_TO_CHF, COP_TO_CHF } from '../../../../constants';
+import { USD_TO_CHF, COP_TO_CHF } from '../constants';
 
-export const useCurrencyEx = (amount, currency) => {
+export const currencyEx = (amount, currency) => {
   switch (currency) {
     case 'usd':
       return USD_TO_CHF * amount;

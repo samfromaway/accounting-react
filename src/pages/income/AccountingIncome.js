@@ -11,12 +11,11 @@ import CategoriesContext from '../../context/categories/categoriesContext';
 const AccountingIncome = () => {
   const {
     incomeTransactions,
-    addTransactions,
+    addTransaction,
     deleteTransaction,
     editTransaction,
   } = useContext(IncomeTransactionsContext);
   const { incomeCategories } = useContext(CategoriesContext);
-
   return (
     <Fragment>
       <Box m={11} />
@@ -34,11 +33,13 @@ const AccountingIncome = () => {
           categories={incomeCategories}
         />
         <Box m={6} />
-        <AccountingInput categories={incomeCategories} />
+        <AccountingInput
+          categories={incomeCategories}
+          addTransaction={addTransaction}
+        />
         <Box m={6} />
         <AccountingTable
           transactions={incomeTransactions}
-          addTransactions={addTransactions}
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}
           categories={incomeCategories}

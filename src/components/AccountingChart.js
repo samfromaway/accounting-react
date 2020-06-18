@@ -47,7 +47,6 @@ const AccountingSummaryChart = ({ title, data, total, categories }) => {
     return colorConfig;
   };
   const colorConfig = createColorConfig();
-  console.log(data);
   const legendFormatter = (value, entry, index) => {
     const category = categories.filter((category) => category.value === value);
     return category[0].label;
@@ -98,7 +97,7 @@ const AccountingSummaryChart = ({ title, data, total, categories }) => {
               stackId='x'
               fill={colorConfig[category.value]}
             >
-              <LabelList dataKey={category.value} stroke='white' />
+              <LabelList dataKey={category.value} fill='white' />
             </Bar>
           ))}
         </BarChart>

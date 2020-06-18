@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import IncomeTransactionsContext from './incomeTransactionsContext';
 import IncomeTransactionsReducer from './incomeTransactionsReducer';
+import { currencyEx } from '../../functions/currencyEx';
 import { USD_TO_CHF, COP_TO_CHF } from '../../constants';
 
 // Provider Component
@@ -54,25 +55,11 @@ const IncomeTransactionsState = ({ children }) => {
 
   const addChfValue = () => {
     state.transactions.forEach((transaction) => {
-      transaction.chfAmount = fxCalcChf(
+      transaction.chfAmount = currencyEx(
         transaction.amount,
         transaction.currency
       );
     });
-  };
-
-  const fxCalcChf = (amount, currency) => {
-    switch (currency) {
-      case 'usd':
-        return USD_TO_CHF * amount;
-      case 'cop':
-        return COP_TO_CHF * amount;
-      case 'chf':
-        return amount;
-      default:
-        return alert('Error in FX calc');
-      //error can be deleted in prod
-    }
   };
 
   useEffect(() => {

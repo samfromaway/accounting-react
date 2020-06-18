@@ -72,6 +72,7 @@ const App = () => {
 
 export default App;
 
+//reset data add categories
 // Modal don't allow to add categories that already exist
 //Charts tooltip
 // max and min display size
