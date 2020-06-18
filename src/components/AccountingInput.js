@@ -59,7 +59,7 @@ const AccountingInput = ({ categories, addTransaction }) => {
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState('');
   const [amount, setAmount] = useState('');
-  const [chfAmount, setChfAmounts] = useState('');
+  const [chfAmount, setChfAmounts] = useState(0);
   const [document, setDocument] = useState('');
   const [category, setCategory] = useState('');
 
@@ -87,30 +87,20 @@ const AccountingInput = ({ categories, addTransaction }) => {
   };
 
   const handleAmountChange = (e) => {
-    setAmount(e.target.value);
-    setChfAmounts(currencyEx(e.target.value, currency));
+    setAmount(+e.target.value);
+    setChfAmounts(+currencyEx(e.target.value, currency));
   };
 
   const handleCurrencyChange = (e) => {
     setCurrency(e.target.value);
-    setChfAmounts(currencyEx(amount, e.target.value));
+    setChfAmounts(+currencyEx(amount, e.target.value));
   };
 
-  // const fxCalcChf = (amount, currency) => {
-  //   if (amount && currency) {
-  //     switch (currency) {
-  //       case 'usd':
-  //         return USD_TO_CHF * amount;
-  //       case 'cop':
-  //         return COP_TO_CHF * amount;
-  //       case 'chf':
-  //         return amount;
-  //       default:
-  //         return 'Currency/Amount missing';
-  //     }
-  //   }
-  // };
-
+  const totalChfAmount = () => {
+    if (chfAmount) {
+      return 'CHF ' + chfAmount.toFixed(2);
+    }
+  };
   const resetData = () => {
     setDate(new Date());
     setDescription('');
@@ -210,7 +200,9 @@ const AccountingInput = ({ categories, addTransaction }) => {
               ))}
             </TextField>
           </Box>
-          <Typography className={classes.chfValue}>CHF {chfAmount}</Typography>
+          <Typography className={classes.chfValue}>
+            {totalChfAmount()}
+          </Typography>
           <Box className={classes.fabBox}>
             <Fab color='primary' aria-label='add' onClick={onInputSubmit}>
               <AddIcon />
