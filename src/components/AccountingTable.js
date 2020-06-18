@@ -44,6 +44,7 @@ const AccountingTable = ({
   deleteTransaction,
   editTransaction,
   categories,
+  addChfValue,
 }) => {
   const currenciesFormated = () => {
     const currenciesFormated = {};
@@ -108,6 +109,7 @@ const AccountingTable = ({
               resolve();
               if (oldData) {
                 editTransaction(newData, oldData._id);
+                // addChfValue();
               }
             }, 600);
           }),

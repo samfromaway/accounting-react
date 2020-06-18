@@ -56,6 +56,8 @@ const ExpensesTransactionsState = ({ children }) => {
   );
 
   const addChfValue = () => {
+    console.log(state.transactions);
+
     state.transactions.forEach((transaction) => {
       transaction.chfAmount = currencyEx(
         transaction.amount,
@@ -84,9 +86,15 @@ const ExpensesTransactionsState = ({ children }) => {
   }
 
   function editTransaction(updatedTransaction, id) {
+    const formatedAmount = +updatedTransaction.amount;
+    const formatedUpdatedTransaction = {
+      ...updatedTransaction,
+      amount: formatedAmount,
+    };
+
     dispatch({
       type: 'EDIT_TRANSACTION',
-      payload: { updatedTransaction: updatedTransaction, id: id },
+      payload: { updatedTransaction: formatedUpdatedTransaction, id: id },
     });
   }
 
@@ -97,6 +105,7 @@ const ExpensesTransactionsState = ({ children }) => {
         deleteTransaction,
         addTransaction,
         editTransaction,
+        addChfValue,
       }}
     >
       {children}

@@ -16,7 +16,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
 import { currencyEx } from '../functions/currencyEx';
 
-import { USD_TO_CHF, COP_TO_CHF, CURRENCIES } from '../constants';
+import { CURRENCIES } from '../constants';
 
 const useStyles = makeStyles((theme) => ({
   box: {

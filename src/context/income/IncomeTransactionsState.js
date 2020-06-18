@@ -82,9 +82,15 @@ const IncomeTransactionsState = ({ children }) => {
   }
 
   function editTransaction(updatedTransaction, id) {
+    const formatedAmount = +updatedTransaction.amount;
+    const formatedUpdatedTransaction = {
+      ...updatedTransaction,
+      amount: formatedAmount,
+    };
+
     dispatch({
       type: 'EDIT_TRANSACTION',
-      payload: { updatedTransaction: updatedTransaction, id: id },
+      payload: { updatedTransaction: formatedUpdatedTransaction, id: id },
     });
   }
 
@@ -95,6 +101,7 @@ const IncomeTransactionsState = ({ children }) => {
         deleteTransaction,
         addTransaction,
         editTransaction,
+        addChfValue,
       }}
     >
       {children}

@@ -14,6 +14,7 @@ const AccountingIncome = () => {
     addTransaction,
     deleteTransaction,
     editTransaction,
+    addChfValue,
   } = useContext(IncomeTransactionsContext);
   const { incomeCategories } = useContext(CategoriesContext);
   return (
@@ -43,6 +44,7 @@ const AccountingIncome = () => {
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}
           categories={incomeCategories}
+          addChfValue={addChfValue}
         />
       </Container>
       <Box m={10} />

@@ -14,6 +14,7 @@ const AccountingExpenses = () => {
     addTransaction,
     deleteTransaction,
     editTransaction,
+    addChfValue,
   } = useContext(ExpensesTransactionsContext);
   const { expensesCategories } = useContext(CategoriesContext);
   return (
@@ -42,6 +43,7 @@ const AccountingExpenses = () => {
           transactions={expensesTransactions}
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}
+          addChfValue={addChfValue}
           categories={expensesCategories}
         />
       </Container>
