@@ -87,8 +87,8 @@ export default App;
 // better tooltip chart
 // tooltip buttons input
 // export to pdf
+// uninstall unesed chart library
 //css baseline?
-
 
 //Similar App
 //https://codesandbox.io/s/dark-theme-switch-tp37c?from-embed=&file=/src/Dashboard/Dashboard.js:5322-5339

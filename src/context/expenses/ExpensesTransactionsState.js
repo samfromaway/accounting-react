@@ -41,8 +41,8 @@ const ExpensesTransactionsState = ({ children }) => {
         _id: 1107366566,
         date: '2020-03-29T11:22:55.763Z',
         description: 'dfefe',
-        currency: 'usd',
-        amount: 200,
+        currency: 'cop',
+        amount: 2000003,
         chfAmount: 192,
         document: 'dsdfa',
         category: 'online',
@@ -56,15 +56,13 @@ const ExpensesTransactionsState = ({ children }) => {
   );
 
   const addChfValue = () => {
-    state.transactions.map(
-      (transaction) =>
-        (transaction.chfAmount = fxCalcChf(
-          transaction.amount,
-          transaction.currency
-        ))
-    );
+    state.transactions.forEach((transaction) => {
+      transaction.chfAmount = fxCalcChf(
+        transaction.amount,
+        transaction.currency
+      );
+    });
   };
-
   const fxCalcChf = (amount, currency) => {
     switch (currency) {
       case 'usd':
@@ -74,7 +72,7 @@ const ExpensesTransactionsState = ({ children }) => {
       case 'chf':
         return amount;
       default:
-        return 'Error';
+        return alert('Error in FX calc');
       //error can be deleted in prod
     }
   };

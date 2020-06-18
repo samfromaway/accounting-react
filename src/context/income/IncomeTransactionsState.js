@@ -53,13 +53,12 @@ const IncomeTransactionsState = ({ children }) => {
   const [state, dispatch] = useReducer(IncomeTransactionsReducer, initialState);
 
   const addChfValue = () => {
-    state.transactions.map(
-      (transaction) =>
-        (transaction.chfAmount = fxCalcChf(
-          transaction.amount,
-          transaction.currency
-        ))
-    );
+    state.transactions.forEach((transaction) => {
+      transaction.chfAmount = fxCalcChf(
+        transaction.amount,
+        transaction.currency
+      );
+    });
   };
 
   const fxCalcChf = (amount, currency) => {
@@ -71,7 +70,7 @@ const IncomeTransactionsState = ({ children }) => {
       case 'chf':
         return amount;
       default:
-        return 'Error';
+        return alert('Error in FX calc');
       //error can be deleted in prod
     }
   };

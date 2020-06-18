@@ -9,6 +9,7 @@ const AccountingSummary = ({ transactions, title, categories }) => {
   const total = transactions
     .map((transaction) => transaction.chfAmount)
     .reduce((acc, item) => (acc += item), 0);
+  console.log(transactions);
   return (
     <Fragment>
       <Grid container spacing={4}>
