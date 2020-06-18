@@ -16,7 +16,7 @@ export const useFilterPerMonth = (transactions, categories) => {
       const sum = array
         .map((e) => e.chfAmount)
         .reduce((acc, item) => (acc += item), 0);
-      return sum;
+      return sum.toFixed(2);
     };
 
     const categoryByMonth = (monthString, monthNr) => {
@@ -32,10 +32,6 @@ export const useFilterPerMonth = (transactions, categories) => {
       return total;
     };
 
-    //
-    //
-    //
-    //
     const data = [
       categoryByMonth('Jan', 0),
       categoryByMonth('Feb', 1),

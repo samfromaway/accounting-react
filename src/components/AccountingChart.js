@@ -16,7 +16,6 @@ import { Typography } from '@material-ui/core';
 
 const AccountingSummaryChart = ({ title, data, total, categories }) => {
   const theme = useTheme();
-  console.log(data);
   const createColorConfig = () => {
     const colorConfig = [];
     const availableColors = [
@@ -48,7 +47,7 @@ const AccountingSummaryChart = ({ title, data, total, categories }) => {
     return colorConfig;
   };
   const colorConfig = createColorConfig();
-
+  console.log(data);
   const legendFormatter = (value, entry, index) => {
     const category = categories.filter((category) => category.value === value);
     return category[0].label;
@@ -68,7 +67,7 @@ const AccountingSummaryChart = ({ title, data, total, categories }) => {
         variant='h6'
         style={{ position: 'absolute', top: '10px', right: '24px' }}
       >
-        Total CHF: {total}
+        Total CHF: {total.toFixed(2)}
       </Typography>
       <ResponsiveContainer width='100%' height={400}>
         <BarChart
