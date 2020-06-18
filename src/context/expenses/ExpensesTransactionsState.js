@@ -55,20 +55,14 @@ const ExpensesTransactionsState = ({ children }) => {
     initialState
   );
 
-  const addChfValue = () => {
-    console.log(state.transactions);
-
-    state.transactions.forEach((transaction) => {
-      transaction.chfAmount = currencyEx(
-        transaction.amount,
-        transaction.currency
-      );
-    });
-  };
-
-  useEffect(() => {
-    addChfValue();
-  });
+  // const addChfValue = () => {
+  //   state.transactions.forEach((transaction) => {
+  //     transaction.chfAmount = currencyEx(
+  //       transaction.amount,
+  //       transaction.currency
+  //     );
+  //   });
+  // };
 
   //Actions
   function deleteTransaction(id) {
@@ -86,15 +80,9 @@ const ExpensesTransactionsState = ({ children }) => {
   }
 
   function editTransaction(updatedTransaction, id) {
-    const formatedAmount = +updatedTransaction.amount;
-    const formatedUpdatedTransaction = {
-      ...updatedTransaction,
-      amount: formatedAmount,
-    };
-
     dispatch({
       type: 'EDIT_TRANSACTION',
-      payload: { updatedTransaction: formatedUpdatedTransaction, id: id },
+      payload: { updatedTransaction: updatedTransaction, id: id },
     });
   }
 
@@ -105,7 +93,6 @@ const ExpensesTransactionsState = ({ children }) => {
         deleteTransaction,
         addTransaction,
         editTransaction,
-        addChfValue,
       }}
     >
       {children}

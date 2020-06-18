@@ -14,6 +14,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import { currencyEx } from '../functions/currencyEx';
 import { CURRENCIES } from '../constants';
 
 const tableIcons = {
@@ -108,8 +109,21 @@ const AccountingTable = ({
             setTimeout(() => {
               resolve();
               if (oldData) {
-                editTransaction(newData, oldData._id);
-                // addChfValue();
+                const formatNewData = () => {
+                  const formatedAmount = +newData.amount;
+                  const formatedChfAmount = currencyEx(
+                    newData.amount,
+                    newData.currency
+                  );
+                  const formatedNewData = {
+                    ...newData,
+                    amount: formatedAmount,
+                    chfAmount: formatedChfAmount,
+                  };
+
+                  return formatedNewData;
+                };
+                editTransaction(formatNewData(), oldData._id);
               }
             }, 600);
           }),

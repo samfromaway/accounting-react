@@ -53,19 +53,6 @@ const IncomeTransactionsState = ({ children }) => {
 
   const [state, dispatch] = useReducer(IncomeTransactionsReducer, initialState);
 
-  const addChfValue = () => {
-    state.transactions.forEach((transaction) => {
-      transaction.chfAmount = currencyEx(
-        transaction.amount,
-        transaction.currency
-      );
-    });
-  };
-
-  useEffect(() => {
-    addChfValue();
-  });
-
   //Actions
   function deleteTransaction(id) {
     dispatch({
@@ -82,15 +69,9 @@ const IncomeTransactionsState = ({ children }) => {
   }
 
   function editTransaction(updatedTransaction, id) {
-    const formatedAmount = +updatedTransaction.amount;
-    const formatedUpdatedTransaction = {
-      ...updatedTransaction,
-      amount: formatedAmount,
-    };
-
     dispatch({
       type: 'EDIT_TRANSACTION',
-      payload: { updatedTransaction: formatedUpdatedTransaction, id: id },
+      payload: { updatedTransaction: updatedTransaction, id: id },
     });
   }
 
@@ -101,7 +82,6 @@ const IncomeTransactionsState = ({ children }) => {
         deleteTransaction,
         addTransaction,
         editTransaction,
-        addChfValue,
       }}
     >
       {children}

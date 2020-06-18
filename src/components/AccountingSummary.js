@@ -5,12 +5,11 @@ import { useFilterPerMonth } from '../hooks/useFilterPerMonth';
 import { Grid } from '@material-ui/core';
 
 const AccountingSummary = ({ transactions, title, categories }) => {
-  const chartData = useFilterPerMonth(transactions, categories);
   const total = transactions
     .map((transaction) => transaction.chfAmount)
     .reduce((acc, item) => (acc += item), 0);
-  // console.log(chartData);
-  // console.log(transactions);
+  const chartData = useFilterPerMonth(transactions, categories);
+
   return (
     <Fragment>
       <Grid container spacing={4}>
