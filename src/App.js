@@ -15,7 +15,7 @@ import './app.css';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [openSettingsModal, setOpenSettingsModal] = useState(false);
+  const [openSettingsModal, setOpenSettingsModal] = useState(true);
 
   const handleOpenSettingsModal = () => {
     setOpenSettingsModal(true);
