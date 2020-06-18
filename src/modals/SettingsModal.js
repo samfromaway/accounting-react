@@ -47,19 +47,47 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
   const classes = useStyles();
 
   const handleAddIncomeCategory = () => {
-    const categoryValue = newIncomeCategory
-      .replace(/\s/g, '')
-      .toLocaleLowerCase();
-    const categoryLabel = newIncomeCategory;
-    addIncomeCategory({ value: categoryValue, label: categoryLabel });
+    if (newIncomeCategory) {
+      if (
+        incomeCategories.some(
+          (category) =>
+            category.value ===
+            newIncomeCategory.replace(/\s/g, '').toLowerCase()
+        )
+      ) {
+        alert('this category already exists');
+      } else {
+        const categoryValue = newIncomeCategory
+          .replace(/\s/g, '')
+          .toLocaleLowerCase();
+        const categoryLabel = newIncomeCategory;
+        addIncomeCategory({ value: categoryValue, label: categoryLabel });
+      }
+    } else {
+      alert('please add a category');
+    }
   };
 
   const handleAddExpensesCategory = () => {
-    const categoryValue = newExpensesCategory
-      .replace(/\s/g, '')
-      .toLocaleLowerCase();
-    const categoryLabel = newExpensesCategory;
-    addExpensesCategory({ value: categoryValue, label: categoryLabel });
+    if (newExpensesCategory) {
+      if (
+        expensesCategories.some(
+          (category) =>
+            category.value ===
+            newExpensesCategory.replace(/\s/g, '').toLowerCase()
+        )
+      ) {
+        alert('this category already exists');
+      } else {
+        const categoryValue = newExpensesCategory
+          .replace(/\s/g, '')
+          .toLocaleLowerCase();
+        const categoryLabel = newExpensesCategory;
+        addExpensesCategory({ value: categoryValue, label: categoryLabel });
+      }
+    } else {
+      alert('please add a category');
+    }
   };
 
   return (
@@ -94,7 +122,6 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
               className={classes.cancelBox}
               size='small'
               onClick={handleAddIncomeCategory}
-              startIcon={<CancelIcon />}
             >
               Add
             </Button>
@@ -122,7 +149,6 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
               className={classes.cancelBox}
               size='small'
               onClick={handleAddExpensesCategory}
-              startIcon={<CancelIcon />}
             >
               Add
             </Button>

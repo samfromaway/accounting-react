@@ -72,12 +72,14 @@ const App = () => {
 
 export default App;
 
+// when amount edited the chart does not update
 //reset data add categories
 // Modal don't allow to add categories that already exist
 //Charts tooltip
 // max and min display size
 // permanent scrollbar
 // Button Add confimration
+// Alert() in other element from Material UI
 // CHf total input style
 // 100,000 trennzeichen
 // dark mode toggle
