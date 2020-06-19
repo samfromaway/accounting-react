@@ -15,7 +15,7 @@ import './app.css';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [openSettingsModal, setOpenSettingsModal] = useState(false);
+  const [openSettingsModal, setOpenSettingsModal] = useState(true);
 
   const handleOpenSettingsModal = () => {
     setOpenSettingsModal(true);
@@ -72,26 +72,28 @@ const App = () => {
 
 export default App;
 
-// when amount edited the chart does not update
+// title header
+//style settings
 //reset data add categories
-// Modal don't allow to add categories that already exist
-//Charts tooltip
+//Charts tooltip styling
 // max and min display size
-// permanent scrollbar
-// Button Add confimration
 // Alert() in other element from Material UI
-// CHf total input style
 // 100,000 trennzeichen
-// dark mode toggle
-//title fuer import box
-// left align title chart
-// style cancle button
 //proptypes
-// better tooltip chart
-// tooltip buttons input
 // export to pdf
-// uninstall unesed chart library
+// exchange rate change automatically or by user and if yes what happens to exisiting chfAmount and what happens if that's changed
+
+// nice to have
+// tooltip buttons input
+// Button Add confimration
+// user currency add in settings
+
+//Could have a look into:
+// permanent scrollbar when select dropdown is open?
+
+//Don't forget
 //css baseline?
+// uninstall unesed chart library
 
 //Similar App
 //https://codesandbox.io/s/dark-theme-switch-tp37c?from-embed=&file=/src/Dashboard/Dashboard.js:5322-5339
