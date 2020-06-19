@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import CategoriesContext from './categoriesContext';
 import CategoriesReducer from './categoriesReducer';
 

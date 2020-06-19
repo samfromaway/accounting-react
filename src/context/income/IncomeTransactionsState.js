@@ -1,8 +1,6 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import IncomeTransactionsContext from './incomeTransactionsContext';
 import IncomeTransactionsReducer from './incomeTransactionsReducer';
-import { currencyEx } from '../../functions/currencyEx';
-import { USD_TO_CHF, COP_TO_CHF } from '../../constants';
 
 // Provider Component
 const IncomeTransactionsState = ({ children }) => {

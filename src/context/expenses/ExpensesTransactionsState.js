@@ -1,7 +1,6 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import ExpensesTransactionsContext from './expensesTransactionsContext';
 import ExpensesTransactionsReducer from './expensesTransactionsReducer';
-import { currencyEx } from '../../functions/currencyEx';
 
 // Provider Component
 const ExpensesTransactionsState = ({ children }) => {

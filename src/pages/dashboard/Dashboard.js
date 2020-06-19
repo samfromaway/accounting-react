@@ -7,7 +7,6 @@ import Box from '@material-ui/core/Box';
 import InputIcon from '@material-ui/icons/Input';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
-import Modal from '../../modals/SettingsModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
