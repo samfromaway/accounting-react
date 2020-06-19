@@ -21,13 +21,6 @@ const AccountingExpenses = () => {
     <Fragment>
       <Box m={11} />
       <Container fixed maxWidth='lg'>
-        <Typography
-          variant='h4'
-          align='center'
-          style={{ paddingBottom: '20px' }}
-        >
-          Expenses
-        </Typography>
         <AccountingSummary
           transactions={expensesTransactions}
           title={'Expenses (CHF)'}

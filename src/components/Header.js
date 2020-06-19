@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -25,6 +23,7 @@ import InputIcon from '@material-ui/icons/Input';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
+import { useReactPath } from '../hooks/useReactPath';
 
 import { CURRENT_YEAR } from '../constants';
 
@@ -99,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MiniDrawer({
+export default function Header({
   themeMode,
   toggleDarkMode,
   handleOpenSettingsModal,
@@ -107,6 +106,9 @@ export default function MiniDrawer({
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [activePage, setActivePage] = useState(activePageName());
+
+  console.log(window.location.pathname);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -115,6 +117,25 @@ export default function MiniDrawer({
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const path = useReactPath();
+  React.useEffect(() => {
+    console.log(path);
+  }, [path]);
+
+  function activePageName() {
+    const url = window.location.pathname;
+
+    if (url.indexOf('expenses') > -1) {
+      return 'Expenses';
+    } else if (url.indexOf('income') > -1) {
+      return 'Income';
+    } else if (url.indexOf('capital') > -1) {
+      return 'Capital';
+    } else if (url.indexOf('settings') > -1) {
+      return 'Settings';
+    } else return 'Dashboard';
+  }
 
   return (
     <div className={classes.root}>
@@ -139,6 +160,9 @@ export default function MiniDrawer({
           </IconButton>
           <Typography variant='h6' noWrap className={classes.title}>
             Accounting {CURRENT_YEAR}
+          </Typography>
+          <Typography variant='h6' noWrap className={classes.title}>
+            {activePage}
           </Typography>
           <FormControlLabel
             value='start'
@@ -174,7 +198,13 @@ export default function MiniDrawer({
         </div>
         <Divider />
         <List>
-          <ListItem button component={Link} to='/' className={classes.listItem}>
+          <ListItem
+            button
+            component={Link}
+            to='/'
+            className={classes.listItem}
+            selected={activePage === 'Dashboard' ? true : false}
+          >
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
@@ -182,9 +212,11 @@ export default function MiniDrawer({
           </ListItem>
           <ListItem
             button
+            //onClick={setTitleFromURL}
             component={Link}
             to='/income'
             className={classes.listItem}
+            selected={activePage === 'Income' ? true : false}
           >
             <ListItemIcon>
               <InputIcon />
@@ -196,6 +228,7 @@ export default function MiniDrawer({
             component={Link}
             to='/expenses'
             className={classes.listItem}
+            selected={activePage === 'Expenses' ? true : false}
           >
             <ListItemIcon>
               <CallMissedOutgoingIcon />
@@ -207,6 +240,7 @@ export default function MiniDrawer({
             component={Link}
             to='/capital'
             className={classes.listItem}
+            selected={activePage === 'Capital' ? true : false}
           >
             <ListItemIcon>
               <EqualizerIcon />
