@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import ChipsCategorySettings from '../components/ChipsCategorySettings';
+import SettingsTabs from '../components/SettingsTabs';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import IncomeTransactionsContext from '../context/income/incomeTransactionsContext';
 import ExpensesTransactionsContext from '../context/expenses/expensesTransactionsContext';
 import CategoriesContext from '../context/categories/categoriesContext';
@@ -17,14 +19,18 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    width: '600px',
+    width: '900px',
     height: '600px',
+    position: 'relative',
     padding: theme.spacing(2, 4, 3),
     '&:focus': {
       outline: 'none',
     },
+  },
+  closeButton: {
+    position: 'absolute',
+    right: '15px',
+    bottom: '15px',
   },
 }));
 
@@ -55,25 +61,27 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
       }}
     >
       <Fade in={openSettingsModal}>
-        <div className={classes.paper}>
-          <Typography variant='h4'>Settings</Typography>
-          <ChipsCategorySettings
-            title={'Income'}
-            id={'income'}
-            transactions={incomeTransactions}
-            categories={incomeCategories}
-            deleteCategory={deleteIncomeCategory}
-            addCategory={addIncomeCategory}
+        <Paper className={classes.paper}>
+          <Typography variant='h5'>Settings</Typography>
+          <SettingsTabs
+            expensesTransactions={expensesTransactions}
+            expensesCategories={expensesCategories}
+            deleteExpensesCategory={deleteExpensesCategory}
+            addExpensesCategory={addExpensesCategory}
+            incomeTransactions={incomeTransactions}
+            incomeCategories={incomeCategories}
+            deleteIncomeCategory={deleteIncomeCategory}
+            addIncomeCategory={addIncomeCategory}
           />
-          <ChipsCategorySettings
-            title={'Expenses'}
-            id={'expenses'}
-            transactions={expensesTransactions}
-            categories={expensesCategories}
-            deleteCategory={deleteExpensesCategory}
-            addCategory={addExpensesCategory}
-          />
-        </div>
+
+          <Button
+            className={classes.closeButton}
+            color='default'
+            onClick={handleCloseSettingsModal}
+          >
+            Close
+          </Button>
+        </Paper>
       </Fade>
     </Modal>
   );

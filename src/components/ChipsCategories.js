@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     flexWrap: 'wrap',
     listStyle: 'none',
+    width: '600px',
     padding: theme.spacing(0.5),
     margin: 0,
   },
@@ -31,7 +32,7 @@ const ChipsCategories = ({ categories, transactions, deleteCategory }) => {
   };
 
   return (
-    <Paper component='ul' className={classes.root}>
+    <Paper component='ul' className={classes.root} variant={'outlined'}>
       {categories.map((data) => {
         return (
           <li key={data.value}>

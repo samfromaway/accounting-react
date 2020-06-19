@@ -1,9 +1,32 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
 import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ChipsCategories from './ChipsCategories';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    marginBottom: '1rem',
+  },
+  input: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: '0.3rem',
+  },
+  button: {
+    marginLeft: '1rem',
+    marginTop: '5px',
+  },
+  text: {
+    marginBottom: '0.3rem',
+  },
+}));
 
 const ChipsCategorySettings = ({
   title,
@@ -14,6 +37,7 @@ const ChipsCategorySettings = ({
   addCategory,
 }) => {
   const [newCategory, setNewCategory] = useState('');
+  const classes = useStyles();
 
   const handleAddCategory = () => {
     if (newCategory) {
@@ -41,24 +65,31 @@ const ChipsCategorySettings = ({
     setNewCategory('');
   };
   return (
-    <Box>
-      <Typography variant='h5'>{`${title} Categories`}</Typography>
-      <TextField
-        id={id}
-        label={`${title} Categories`}
-        value={newCategory}
-        onChange={(e) => setNewCategory(e.target.value)}
-        variant='outlined'
-      />
-      <Button
-        variant='contained'
-        color='primary'
-        size='small'
-        onClick={handleAddCategory}
-      >
-        Add
-      </Button>
-      <Typography>If the category is in use it can't be deleted.</Typography>
+    <Box className={classes.root}>
+      <Typography variant='h6'>{`${title} Categories`}</Typography>
+      <Box className={classes.input}>
+        <TextField
+          id={id}
+          size='small'
+          margin='dense'
+          label={`${title} Categories`}
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
+          variant='outlined'
+        />
+        <Button
+          variant='contained'
+          color='primary'
+          size='small'
+          onClick={handleAddCategory}
+          className={classes.button}
+        >
+          Add
+        </Button>
+      </Box>
+      <Typography className={classes.text}>
+        If the category is in use it can't be deleted.
+      </Typography>
       <ChipsCategories
         categories={categories}
         transactions={transactions}
