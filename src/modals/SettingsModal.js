@@ -64,7 +64,7 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
         <Paper className={classes.paper}>
           <Typography variant='h5'>Settings</Typography>
           <Divider style={{ margin: '0.5rem 0 1rem 0 ' }} />
-          {/* <SettingsTabs
+          <SettingsTabs
             expensesTransactions={expensesTransactions}
             expensesCategories={expensesCategories}
             deleteExpensesCategory={deleteExpensesCategory}
@@ -73,7 +73,7 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
             incomeCategories={incomeCategories}
             deleteIncomeCategory={deleteIncomeCategory}
             addIncomeCategory={addIncomeCategory}
-          /> */}
+          />
 
           <Button
             className={classes.closeButton}
