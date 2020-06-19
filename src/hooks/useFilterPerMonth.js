@@ -6,6 +6,7 @@ export const useFilterPerMonth = (transactions, categories) => {
 
   useEffect(() => {
     setChartData(data);
+    // eslint-disable-next-line
   }, [transactions, categories]);
 
   const categoriesInMonth = (array, filterCategory, filterMonth) => {

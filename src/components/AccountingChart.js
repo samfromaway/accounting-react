@@ -39,9 +39,8 @@ const AccountingSummaryChart = ({ title, data, total, categories }) => {
       };
 
       incrementColorCount();
-      {
-        colorConfig[category] = availableColors[colorCount];
-      }
+
+      colorConfig[category] = availableColors[colorCount];
     });
     return colorConfig;
   };
