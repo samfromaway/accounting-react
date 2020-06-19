@@ -20,7 +20,7 @@ export const useFilterPerMonth = (transactions, categories) => {
     const sum = array
       .map((e) => e.chfAmount)
       .reduce((acc, item) => (acc += item), 0);
-    return sum.toFixed(2);
+    return sum.toFixed(0);
   };
 
   const categoryByMonth = (monthString, monthNr) => {
