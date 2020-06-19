@@ -24,8 +24,9 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import { useReactPath } from '../hooks/useReactPath';
-
 import { CURRENT_YEAR } from '../constants';
+
+//https://stackoverflow.com/questions/58442168/why-useeffect-doesnt-run-on-window-location-pathname-changes
 
 const drawerWidth = 240;
 
@@ -108,8 +109,6 @@ export default function Header({
   const [open, setOpen] = useState(false);
   const [activePage, setActivePage] = useState(activePageName());
 
-  console.log(window.location.pathname);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -117,11 +116,6 @@ export default function Header({
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
-  const path = useReactPath();
-  React.useEffect(() => {
-    console.log(path);
-  }, [path]);
 
   function activePageName() {
     const url = window.location.pathname;
