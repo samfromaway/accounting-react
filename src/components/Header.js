@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -23,7 +23,7 @@ import InputIcon from '@material-ui/icons/Input';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
-//import { useReactPath } from '../hooks/useReactPath';
+import { useReactPath } from '../hooks/useReactPath';
 import { CURRENT_YEAR } from '../constants';
 
 //https://stackoverflow.com/questions/58442168/why-useeffect-doesnt-run-on-window-location-pathname-changes
@@ -105,9 +105,11 @@ export default function Header({
   handleOpenSettingsModal,
 }) {
   const classes = useStyles();
+  const path = useReactPath();
+
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [activePage] = useState(activePageName());
+  const [activePage, setActivePage] = useState(activePageName());
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -116,6 +118,11 @@ export default function Header({
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    console.log(path);
+    setActivePage(path);
+  }, [path]);
 
   function activePageName() {
     const url = window.location.pathname;
