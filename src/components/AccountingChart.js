@@ -8,7 +8,6 @@ import {
   Bar,
   Legend,
   Tooltip,
-  CartesianGrid,
   BarChart,
   LabelList,
 } from 'recharts';

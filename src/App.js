@@ -9,7 +9,6 @@ import ExpensesTransactionsState from './context/expenses/ExpensesTransactionsSt
 import CategoriesState from './context/categories/CategoriesState';
 import SettingsModal from './modals/SettingsModal';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { useReactPath } from './hooks/useReactPath';
 
 //import Theme from './styles/theme';
 import './app.css';

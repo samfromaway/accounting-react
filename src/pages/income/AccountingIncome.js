@@ -1,7 +1,6 @@
 import React, { useContext, Fragment } from 'react';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import { Typography } from '@material-ui/core';
 import IncomeTransactionsContext from '../../context/income/incomeTransactionsContext';
 import AccountingSummary from '../../components/AccountingSummary';
 import AccountingInput from '../../components/AccountingInput';
