@@ -76,6 +76,7 @@ const App = () => {
 export default App;
 
 // master currency
+// master year?
 //style settings
 //reset data add categories
 //Charts tooltip styling

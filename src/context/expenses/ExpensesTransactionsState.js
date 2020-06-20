@@ -53,16 +53,6 @@ const ExpensesTransactionsState = ({ children }) => {
     ExpensesTransactionsReducer,
     initialState
   );
-
-  // const addChfValue = () => {
-  //   state.transactions.forEach((transaction) => {
-  //     transaction.chfAmount = currencyEx(
-  //       transaction.amount,
-  //       transaction.currency
-  //     );
-  //   });
-  // };
-
   //Actions
   function deleteTransaction(id) {
     dispatch({
