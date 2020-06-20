@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
 import { currencyEx } from '../functions/currencyEx';
+import { transactionsInputValidation } from '../functions/transactionsInputValidation';
 
 import { CURRENCIES } from '../constants';
 
@@ -69,7 +70,6 @@ const AccountingInput = ({ categories, addTransaction }) => {
 
   const onInputSubmit = (e) => {
     e.preventDefault();
-
     const newTransaction = {
       // id will be generated from mongoDB
       _id: Math.floor(Math.random() * 100000000),
@@ -81,9 +81,10 @@ const AccountingInput = ({ categories, addTransaction }) => {
       document,
       category,
     };
-
-    addTransaction(newTransaction);
-    resetData();
+    if (transactionsInputValidation(newTransaction)) {
+      addTransaction(newTransaction);
+      resetData();
+    }
   };
 
   const handleAmountChange = (e) => {

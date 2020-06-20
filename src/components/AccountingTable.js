@@ -15,7 +15,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { currencyEx } from '../functions/currencyEx';
-import { CURRENCIES, currentYear } from '../constants';
+import { transactionsInputValidation } from '../functions/transactionsInputValidation';
+import { CURRENCIES } from '../constants';
 
 const tableIcons = {
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -93,27 +94,6 @@ const AccountingTable = ({
     },
   ];
 
-  const checkIfFieldsFilled = (newData) => {
-    if (
-      newData.description === '' ||
-      newData.currency === '' ||
-      newData.amount === '' ||
-      newData.document === '' ||
-      newData.category === ''
-    ) {
-      alert('Please fill out all the fields');
-      return false;
-    } else if (newData.date === null || newData.date === undefined) {
-      alert(`Please enter a date in the year ${currentYear}`);
-      return false;
-    } else if (new Date(newData.date).getFullYear() !== currentYear) {
-      alert(`Please enter a date in the year ${currentYear}`);
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   const formatNewData = (newData) => {
     const formatedAmount = +newData.amount;
     const formatedDate = new Date(newData.date).toISOString();
@@ -141,7 +121,7 @@ const AccountingTable = ({
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              if (checkIfFieldsFilled(newData)) {
+              if (transactionsInputValidation(newData)) {
                 editTransaction(formatNewData(newData), oldData._id);
               }
             }, 600);
