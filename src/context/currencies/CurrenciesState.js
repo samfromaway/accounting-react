@@ -7,12 +7,20 @@ const ExpensesTransactionsState = ({ children }) => {
   const initialState = {
     chosenSecondaryCurrencies: [
       {
-        value: 'cop',
-        label: 'COP',
+        value: 'chf',
+        label: 'CHF',
       },
       {
         value: 'usd',
         label: 'USD',
+      },
+      {
+        value: 'cop',
+        label: 'COP',
+      },
+      {
+        value: 'eur',
+        label: 'EUR',
       },
     ],
   };

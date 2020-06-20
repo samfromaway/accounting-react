@@ -52,7 +52,6 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
     addExpensesCategory,
   } = useContext(CategoriesContext);
   const classes = useStyles();
-  console.log(secondaryCurrencies);
   return (
     <Modal
       aria-labelledby='transition-modal-title'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import {
@@ -16,6 +16,7 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import { makeStyles } from '@material-ui/core/styles';
 import { currencyEx } from '../functions/currencyEx';
 import { transactionsInputValidation } from '../functions/transactionsInputValidation';
+import CurrenciesContext from '../context/currencies/currenciesContext';
 
 import { CURRENCIES } from '../constants';
 
@@ -56,6 +57,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AccountingInput = ({ categories, addTransaction }) => {
+  const { secondaryCurrencies } = useContext(CurrenciesContext);
+
   const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState('');
@@ -63,8 +66,6 @@ const AccountingInput = ({ categories, addTransaction }) => {
   const [chfAmount, setChfAmounts] = useState(0);
   const [document, setDocument] = useState('');
   const [category, setCategory] = useState('');
-
-  const currencies = CURRENCIES;
 
   const classes = useStyles();
 
@@ -158,7 +159,7 @@ const AccountingInput = ({ categories, addTransaction }) => {
               onChange={handleCurrencyChange}
               variant='outlined'
             >
-              {currencies.map((option) => (
+              {secondaryCurrencies.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>

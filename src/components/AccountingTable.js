@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useContext } from 'react';
 import MaterialTable from 'material-table';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -16,7 +16,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { currencyEx } from '../functions/currencyEx';
 import { transactionsInputValidation } from '../functions/transactionsInputValidation';
-import { CURRENCIES } from '../constants';
+import CurrenciesContext from '../context/currencies/currenciesContext';
 
 const tableIcons = {
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -47,9 +47,11 @@ const AccountingTable = ({
   editTransaction,
   categories,
 }) => {
+  const { secondaryCurrencies } = useContext(CurrenciesContext);
+
   const currenciesFormated = () => {
     const currenciesFormated = {};
-    CURRENCIES.forEach((e) => {
+    secondaryCurrencies.forEach((e) => {
       currenciesFormated[e.value] = e.label;
     });
     return currenciesFormated;

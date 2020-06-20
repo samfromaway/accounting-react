@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: '1rem',
+    marginBottom: '1.2rem',
   },
   inputElement: {
     width: '210px',
@@ -46,7 +46,7 @@ const CurrencySettings = ({
   const handleAddCurrency = () => {
     if (newCurrency) {
       if (currencies.some((category) => category.value === newCurrency)) {
-        alert('this currency already exists');
+        alert('This currency already exists');
       } else {
         const categoryValue = newCurrency;
 
@@ -54,7 +54,7 @@ const CurrencySettings = ({
         addCurrency({ value: categoryValue, label: categoryLabel });
       }
     } else {
-      alert('please add a currency');
+      alert('Please add a currency');
     }
     resetInput();
   };

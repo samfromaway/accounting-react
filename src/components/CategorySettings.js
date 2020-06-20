@@ -49,7 +49,7 @@ const CategorySettings = ({
             category.value === newCategory.replace(/\s/g, '').toLowerCase()
         )
       ) {
-        alert('this category already exists');
+        alert('This category already exists');
       } else {
         const categoryValue = newCategory
           .replace(/\s/g, '')
@@ -58,7 +58,7 @@ const CategorySettings = ({
         addCategory({ value: categoryValue, label: categoryLabel });
       }
     } else {
-      alert('please add a category');
+      alert('Please add a category');
     }
     resetInput();
   };
