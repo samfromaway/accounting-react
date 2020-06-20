@@ -106,7 +106,7 @@ const AccountingTable = ({
     } else if (newData.date === null || newData.date === undefined) {
       alert(`Please enter a date in the year ${currentYear}`);
       return false;
-    } else if (new Date(newData.date).getYear() !== currentYear - 1900) {
+    } else if (new Date(newData.date).getFullYear() !== currentYear) {
       alert(`Please enter a date in the year ${currentYear}`);
       return false;
     } else {
@@ -116,7 +116,7 @@ const AccountingTable = ({
 
   const formatNewData = (newData) => {
     const formatedAmount = +newData.amount;
-    const formatedDate = new Date(newData.date);
+    const formatedDate = new Date(newData.date).toISOString();
     const formatedChfAmount = currencyEx(newData.amount, newData.currency);
     const formatedNewData = {
       ...newData,
@@ -124,7 +124,6 @@ const AccountingTable = ({
       chfAmount: formatedChfAmount,
       date: formatedDate,
     };
-    console.log(formatedNewData);
     return formatedNewData;
   };
 

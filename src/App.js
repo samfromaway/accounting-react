@@ -72,8 +72,7 @@ const App = () => {
 
 export default App;
 
-// title header popstate...
-
+// master currency
 //style settings
 //reset data add categories
 //Charts tooltip styling
@@ -83,6 +82,9 @@ export default App;
 //proptypes
 // export to pdf
 // exchange rate change automatically or by user and if yes what happens to exisiting chfAmount and what happens if that's changed
+
+//ISSUES
+//material ui table date format when edit
 
 // nice to have
 // tooltip buttons input
