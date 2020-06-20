@@ -18,8 +18,6 @@ import { currencyEx } from '../functions/currencyEx';
 import { transactionsInputValidation } from '../functions/transactionsInputValidation';
 import CurrenciesContext from '../context/currencies/currenciesContext';
 
-import { CURRENCIES } from '../constants';
-
 const useStyles = makeStyles((theme) => ({
   box: {
     display: 'flex',

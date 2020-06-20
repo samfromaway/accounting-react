@@ -13,7 +13,6 @@ const AccountingExpenses = () => {
     addTransaction,
     deleteTransaction,
     editTransaction,
-    addChfValue,
   } = useContext(ExpensesTransactionsContext);
   const { expensesCategories } = useContext(CategoriesContext);
   return (

@@ -13,7 +13,6 @@ const AccountingIncome = () => {
     addTransaction,
     deleteTransaction,
     editTransaction,
-    addChfValue,
   } = useContext(IncomeTransactionsContext);
   const { incomeCategories } = useContext(CategoriesContext);
   return (
