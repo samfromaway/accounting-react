@@ -101,6 +101,7 @@ const AccountingInput = ({ categories, addTransaction }) => {
       return 'CHF ' + chfAmount.toFixed(2);
     }
   };
+
   const resetData = () => {
     setDate(new Date());
     setDescription('');

@@ -35,7 +35,6 @@ const AccountingExpenses = () => {
           transactions={expensesTransactions}
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}
-          addChfValue={addChfValue}
           categories={expensesCategories}
         />
       </Container>

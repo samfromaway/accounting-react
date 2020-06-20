@@ -15,7 +15,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { currencyEx } from '../functions/currencyEx';
-import { CURRENCIES } from '../constants';
+import { CURRENCIES, currentYear } from '../constants';
 
 const tableIcons = {
   Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -45,7 +45,6 @@ const AccountingTable = ({
   deleteTransaction,
   editTransaction,
   categories,
-  addChfValue,
 }) => {
   const currenciesFormated = () => {
     const currenciesFormated = {};
@@ -94,6 +93,41 @@ const AccountingTable = ({
     },
   ];
 
+  const checkIfFieldsFilled = (newData) => {
+    if (
+      newData.description === '' ||
+      newData.currency === '' ||
+      newData.amount === '' ||
+      newData.document === '' ||
+      newData.category === ''
+    ) {
+      alert('Please fill out all the fields');
+      return false;
+    } else if (newData.date === null || newData.date === undefined) {
+      alert(`Please enter a date in the year ${currentYear}`);
+      return false;
+    } else if (new Date(newData.date).getYear() !== currentYear - 1900) {
+      alert(`Please enter a date in the year ${currentYear}`);
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const formatNewData = (newData) => {
+    const formatedAmount = +newData.amount;
+    const formatedDate = new Date(newData.date);
+    const formatedChfAmount = currencyEx(newData.amount, newData.currency);
+    const formatedNewData = {
+      ...newData,
+      amount: formatedAmount,
+      chfAmount: formatedChfAmount,
+      date: formatedDate,
+    };
+    console.log(formatedNewData);
+    return formatedNewData;
+  };
+
   return (
     <MaterialTable
       icons={tableIcons}
@@ -108,22 +142,8 @@ const AccountingTable = ({
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              if (oldData) {
-                const formatNewData = () => {
-                  const formatedAmount = +newData.amount;
-                  const formatedChfAmount = currencyEx(
-                    newData.amount,
-                    newData.currency
-                  );
-                  const formatedNewData = {
-                    ...newData,
-                    amount: formatedAmount,
-                    chfAmount: formatedChfAmount,
-                  };
-
-                  return formatedNewData;
-                };
-                editTransaction(formatNewData(), oldData._id);
+              if (checkIfFieldsFilled(newData)) {
+                editTransaction(formatNewData(newData), oldData._id);
               }
             }, 600);
           }),

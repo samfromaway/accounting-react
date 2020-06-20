@@ -23,7 +23,7 @@ import InputIcon from '@material-ui/icons/Input';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
-import { CURRENT_YEAR } from '../constants';
+import { currentYear } from '../constants';
 
 //https://stackoverflow.com/questions/58442168/why-useeffect-doesnt-run-on-window-location-pathname-changes
 
@@ -157,7 +157,7 @@ export default function Header({
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap className={classes.title}>
-            Accounting {CURRENT_YEAR}
+            Accounting {currentYear}
           </Typography>
           <Typography variant='h6' noWrap className={classes.title}>
             {activePage}
