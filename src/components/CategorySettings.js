@@ -5,19 +5,21 @@ import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import ChipsCategories from './ChipsCategories';
+import ChipsSettings01 from './ChipsSettings01';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    alignItems: 'center',
+    display: 'inline-block',
     flexDirection: 'column',
-    marginBottom: '1rem',
   },
   input: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: '0.3rem',
+    marginBottom: '1rem',
+  },
+  inputElement: {
+    width: '210px',
+    height: '100%',
   },
   button: {
     marginLeft: '1rem',
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ChipsCategorySettings = ({
+const CategorySettings = ({
   title,
   id,
   transactions,
@@ -72,6 +74,7 @@ const ChipsCategorySettings = ({
           id={id}
           size='small'
           margin='dense'
+          className={classes.inputElement}
           label={`${title} Categories`}
           value={newCategory}
           onChange={(e) => setNewCategory(e.target.value)}
@@ -90,13 +93,15 @@ const ChipsCategorySettings = ({
       <Typography className={classes.text}>
         If the category is in use it can't be deleted.
       </Typography>
-      <ChipsCategories
-        categories={categories}
-        transactions={transactions}
-        deleteCategory={deleteCategory}
+      <ChipsSettings01
+        data={categories}
+        checkIfInUseElements={transactions.map(
+          (transaction) => transaction.category
+        )}
+        deleteFunction={deleteCategory}
       />
     </Box>
   );
 };
 
-export default ChipsCategorySettings;
+export default CategorySettings;

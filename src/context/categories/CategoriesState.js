@@ -3,7 +3,7 @@ import CategoriesContext from './categoriesContext';
 import CategoriesReducer from './categoriesReducer';
 
 // Provider Component
-const ExpensesTransactionsState = ({ children }) => {
+const CategoriesState = ({ children }) => {
   const initialState = {
     incomeCategories: [
       {
@@ -78,10 +78,10 @@ const ExpensesTransactionsState = ({ children }) => {
       value={{
         incomeCategories: state.incomeCategories,
         expensesCategories: state.expensesCategories,
-        deleteIncomeCategory: deleteIncomeCategory,
-        addIncomeCategory: addIncomeCategory,
-        deleteExpensesCategory: deleteExpensesCategory,
-        addExpensesCategory: addExpensesCategory,
+        deleteIncomeCategory,
+        addIncomeCategory,
+        deleteExpensesCategory,
+        addExpensesCategory,
       }}
     >
       {children}
@@ -89,4 +89,4 @@ const ExpensesTransactionsState = ({ children }) => {
   );
 };
 
-export default ExpensesTransactionsState;
+export default CategoriesState;

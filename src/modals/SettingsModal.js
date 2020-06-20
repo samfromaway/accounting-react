@@ -11,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import IncomeTransactionsContext from '../context/income/incomeTransactionsContext';
 import ExpensesTransactionsContext from '../context/expenses/expensesTransactionsContext';
 import CategoriesContext from '../context/categories/categoriesContext';
+import CurrenciesContext from '../context/currencies/currenciesContext';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -38,6 +39,11 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
   const { incomeTransactions } = useContext(IncomeTransactionsContext);
   const { expensesTransactions } = useContext(ExpensesTransactionsContext);
   const {
+    secondaryCurrencies,
+    deleteSecondaryCurrencies,
+    addSecondaryCurrencies,
+  } = useContext(CurrenciesContext);
+  const {
     incomeCategories,
     deleteIncomeCategory,
     addIncomeCategory,
@@ -46,7 +52,7 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
     addExpensesCategory,
   } = useContext(CategoriesContext);
   const classes = useStyles();
-
+  console.log(secondaryCurrencies);
   return (
     <Modal
       aria-labelledby='transition-modal-title'
@@ -73,6 +79,9 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
             incomeCategories={incomeCategories}
             deleteIncomeCategory={deleteIncomeCategory}
             addIncomeCategory={addIncomeCategory}
+            secondaryCurrencies={secondaryCurrencies}
+            deleteSecondaryCurrencies={deleteSecondaryCurrencies}
+            addSecondaryCurrencies={addSecondaryCurrencies}
           />
 
           <Button

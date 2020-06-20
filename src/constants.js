@@ -15,3 +15,22 @@ export const CURRENCIES = [
     label: 'COP',
   },
 ];
+
+export const DEFAULT_CURRENCIES = [
+  {
+    value: 'usd',
+    label: 'USD',
+  },
+  {
+    value: 'chf',
+    label: 'CHF',
+  },
+  {
+    value: 'cop',
+    label: 'COP',
+  },
+  {
+    value: 'eur',
+    label: 'EUR',
+  },
+];

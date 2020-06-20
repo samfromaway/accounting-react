@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ChipsCategorySettings from '../components/ChipsCategorySettings';
+import CurrencySettings from '../components/CurrencySettings';
+import CategorySettings from './CategorySettings';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -62,6 +63,9 @@ export default function VerticalTabs({
   incomeCategories,
   deleteIncomeCategory,
   addIncomeCategory,
+  secondaryCurrencies,
+  deleteSecondaryCurrencies,
+  addSecondaryCurrencies,
 }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
@@ -80,11 +84,12 @@ export default function VerticalTabs({
         aria-label='Vertical tabs example'
         className={classes.tabs}
       >
-        <Tab label='Income Categories' {...a11yProps(0)} component={'div'} />
+        <Tab label='Income Categories' {...a11yProps(0)} />
         <Tab label='Expenses Categories' {...a11yProps(1)} />
+        <Tab label='Currencies' {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0} style={{ overflowY: 'auto' }}>
-        <ChipsCategorySettings
+        <CategorySettings
           title={'Income'}
           id={'income'}
           transactions={incomeTransactions}
@@ -94,13 +99,23 @@ export default function VerticalTabs({
         />
       </TabPanel>
       <TabPanel value={value} index={1} style={{ overflowY: 'auto' }}>
-        <ChipsCategorySettings
+        <CategorySettings
           title={'Expenses'}
           id={'expenses'}
           transactions={expensesTransactions}
           categories={expensesCategories}
           deleteCategory={deleteExpensesCategory}
           addCategory={addExpensesCategory}
+        />
+      </TabPanel>
+      <TabPanel value={value} index={2} style={{ overflowY: 'auto' }}>
+        <CurrencySettings
+          title={'Currencies'}
+          id={'currencies'}
+          transactions={expensesTransactions}
+          currencies={secondaryCurrencies}
+          deleteCurrency={deleteSecondaryCurrencies}
+          addCurrency={addSecondaryCurrencies}
         />
       </TabPanel>
     </div>

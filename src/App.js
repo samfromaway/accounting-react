@@ -7,6 +7,7 @@ import AccountingExpenses from './pages/expenses/AccountingExpenses';
 import IncomeTransactionsState from './context/income/IncomeTransactionsState';
 import ExpensesTransactionsState from './context/expenses/ExpensesTransactionsState';
 import CategoriesState from './context/categories/CategoriesState';
+import CurrenciesState from './context/currencies/CurrenciesState';
 import SettingsModal from './modals/SettingsModal';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -15,7 +16,7 @@ import './app.css';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [openSettingsModal, setOpenSettingsModal] = useState(false);
+  const [openSettingsModal, setOpenSettingsModal] = useState(true);
 
   const handleOpenSettingsModal = () => {
     setOpenSettingsModal(true);
@@ -38,34 +39,36 @@ const App = () => {
 
   return (
     <CategoriesState>
-      <IncomeTransactionsState>
-        <ExpensesTransactionsState>
-          <ThemeProvider theme={theme}>
-            <Router>
-              <Header
-                themeMode={isDarkMode}
-                toggleDarkMode={toggleDarkMode}
-                handleOpenSettingsModal={handleOpenSettingsModal}
+      <CurrenciesState>
+        <IncomeTransactionsState>
+          <ExpensesTransactionsState>
+            <ThemeProvider theme={theme}>
+              <Router>
+                <Header
+                  themeMode={isDarkMode}
+                  toggleDarkMode={toggleDarkMode}
+                  handleOpenSettingsModal={handleOpenSettingsModal}
+                />
+                <Switch>
+                  <Route exact path='/income'>
+                    <AccountingIncome />
+                  </Route>
+                  <Route exact path='/'>
+                    <Dashboard />
+                  </Route>
+                  <Route exact path='/expenses'>
+                    <AccountingExpenses />
+                  </Route>
+                </Switch>
+              </Router>
+              <SettingsModal
+                openSettingsModal={openSettingsModal}
+                handleCloseSettingsModal={handleCloseSettingsModal}
               />
-              <Switch>
-                <Route exact path='/income'>
-                  <AccountingIncome />
-                </Route>
-                <Route exact path='/'>
-                  <Dashboard />
-                </Route>
-                <Route exact path='/expenses'>
-                  <AccountingExpenses />
-                </Route>
-              </Switch>
-            </Router>
-            <SettingsModal
-              openSettingsModal={openSettingsModal}
-              handleCloseSettingsModal={handleCloseSettingsModal}
-            />
-          </ThemeProvider>
-        </ExpensesTransactionsState>
-      </IncomeTransactionsState>
+            </ThemeProvider>
+          </ExpensesTransactionsState>
+        </IncomeTransactionsState>
+      </CurrenciesState>
     </CategoriesState>
   );
 };

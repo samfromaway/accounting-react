@@ -8,7 +8,6 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    justifyContent: 'center',
     flexWrap: 'wrap',
     listStyle: 'none',
     width: '600px',
@@ -20,26 +19,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ChipsCategories = ({ categories, transactions, deleteCategory }) => {
+const ChipsSettings01 = ({ data, checkIfInUseElements, deleteFunction }) => {
   const classes = useStyles();
 
-  const categoriesInUse = transactions.map(
-    (transaction) => transaction.category
-  );
-
   const handleDelete = (chipToDelete) => () => {
-    deleteCategory(chipToDelete.value);
+    deleteFunction(chipToDelete.value);
   };
 
   return (
     <Paper component='ul' className={classes.root} variant={'outlined'}>
-      {categories.map((data) => {
+      {data.map((data) => {
         return (
           <li key={data.value}>
             <Chip
               label={data.label}
               onDelete={
-                categoriesInUse.indexOf(data.value) > -1
+                checkIfInUseElements.indexOf(data.value) > -1
                   ? null
                   : handleDelete(data)
               }
@@ -52,4 +47,4 @@ const ChipsCategories = ({ categories, transactions, deleteCategory }) => {
   );
 };
 
-export default ChipsCategories;
+export default ChipsSettings01;
