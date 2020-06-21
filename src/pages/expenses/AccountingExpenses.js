@@ -10,6 +10,7 @@ import CategoriesContext from '../../context/categories/categoriesContext';
 const AccountingExpenses = () => {
   const {
     expensesTransactions,
+    getTransactions,
     addTransaction,
     deleteTransaction,
     editTransaction,
@@ -32,6 +33,7 @@ const AccountingExpenses = () => {
         <Box m={6} />
         <AccountingTable
           transactions={expensesTransactions}
+          getTransactions={getTransactions}
           deleteTransaction={deleteTransaction}
           editTransaction={editTransaction}
           categories={expensesCategories}

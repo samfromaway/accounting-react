@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext } from 'react';
+import React, { forwardRef, useContext, useEffect } from 'react';
 import MaterialTable from 'material-table';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
 import Check from '@material-ui/icons/Check';
@@ -43,11 +43,17 @@ const tableIcons = {
 
 const AccountingTable = ({
   transactions,
+  getTransactions,
   deleteTransaction,
   editTransaction,
   categories,
 }) => {
   const { secondaryCurrencies } = useContext(CurrenciesContext);
+
+  useEffect(() => {
+    getTransactions();
+    // eslint-disable-next-line
+  }, []);
 
   const currenciesFormated = () => {
     const currenciesFormated = {};

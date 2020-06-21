@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import {
@@ -70,8 +71,7 @@ const AccountingInput = ({ categories, addTransaction }) => {
   const onInputSubmit = (e) => {
     e.preventDefault();
     const newTransaction = {
-      // id is generated from firebase
-      //id: Math.floor(Math.random() * 100000000),
+      id: uuidv4(),
       date: date.toISOString(),
       description,
       currency,

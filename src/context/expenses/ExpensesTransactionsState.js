@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import ExpensesTransactionsContext from './expensesTransactionsContext';
 import ExpensesTransactionsReducer from './expensesTransactionsReducer';
 import firebase from '../../firebase';
@@ -14,70 +14,71 @@ const ExpensesTransactionsState = ({ children }) => {
     initialState
   );
 
-  console.log(state.transactions);
   const ref = firebase.firestore().collection('expensesTransactions');
-  //functional
+
   function getTransactions() {
-    ref.get().then((item) => {
-      const items = item.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      console.log(items);
-      dispatch({
-        type: 'GET_TRANSACTIONS',
-        payload: items,
-      });
-    });
+    ref
+      .get()
+      .then((item) => {
+        const items = item.docs.map((doc) => doc.data());
+        dispatch({
+          type: 'GET_TRANSACTIONS',
+          payload: items,
+        });
+      })
+      .catch((err) => console.log(err));
   }
 
-  useEffect(() => {
-    getTransactions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // function getOne() {
-  //   const expensesTransactions2 = ref.doc('DJDffytqxKOyPOypH3s3');
-
-  //   expensesTransactions2.get().then((collection) => {
-  //     const id = collection.id;
-  //     const itemData = collection.data();
-  //     const item = { id, ...itemData };
-  //   });
-  // }
-
-  // getOne();
-
-  //Actions
   function deleteTransaction(id) {
-    ref.doc(id).delete().then(console.log('delted'));
-    dispatch({
-      type: 'DELETE_TRANSACTION',
-      payload: id,
-    });
+    ref
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({
+          type: 'DELETE_TRANSACTION',
+          payload: id,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   function addTransaction(transaction) {
-    ref.add(transaction);
-
-    dispatch({
-      type: 'ADD_TRANSACTION',
-      payload: transaction,
-    });
+    ref
+      .doc(transaction.id)
+      .set(transaction)
+      .then(() => {
+        dispatch({
+          type: 'ADD_TRANSACTION',
+          payload: transaction,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function editTransaction(updatedTransaction, id) {
-    ref.doc(id).set(updatedTransaction);
-    dispatch({
-      type: 'EDIT_TRANSACTION',
-      payload: { updatedTransaction: updatedTransaction, id: id },
-    });
+    ref
+      .doc(id)
+      .update(updatedTransaction)
+      .then(() => {
+        dispatch({
+          type: 'EDIT_TRANSACTION',
+          payload: { updatedTransaction: updatedTransaction, id: id },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
     <ExpensesTransactionsContext.Provider
       value={{
         expensesTransactions: state.transactions,
+        getTransactions,
         deleteTransaction,
         addTransaction,
         editTransaction,
@@ -91,3 +92,5 @@ const ExpensesTransactionsState = ({ children }) => {
 export default ExpensesTransactionsState;
 
 //https://softauthor.com/firestore-querying-filtering-data-for-web/
+//https://github.com/bradtraversy/expense-tracker-mern/blob/master/client/src/context/GlobalState.js
+//https://console.firebase.google.com/u/2/
