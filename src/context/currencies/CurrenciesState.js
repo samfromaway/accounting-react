@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import CurrenciesContext from './currenciesContext';
 import CurrenciesReducer from './currenciesReducer';
 import firebase from '../../firebase';
+import { useEffect } from 'react';
 
 // Provider Component
 const ExpensesTransactionsState = ({ children }) => {
@@ -13,6 +14,10 @@ const ExpensesTransactionsState = ({ children }) => {
   const [state, dispatch] = useReducer(CurrenciesReducer, initialState);
 
   const ref = firebase.firestore().collection('chosenSecondaryCurrencies');
+
+  useEffect(() => {
+    getSecondaryCurrencies();
+  }, []);
 
   function getSecondaryCurrencies() {
     ref

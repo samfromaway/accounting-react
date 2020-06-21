@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import CategoriesContext from './categoriesContext';
 import CategoriesReducer from './categoriesReducer';
 import firebase from '../../firebase';
@@ -16,6 +16,11 @@ const CategoriesState = ({ children }) => {
   const refIncome = firebase.firestore().collection('incomeCategories');
 
   //INCOME--------------
+
+  useEffect(() => {
+    getIncomeCategories();
+    getExpensesCategories();
+  }, []);
 
   function getIncomeCategories() {
     refIncome

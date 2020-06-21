@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ChipsSettings01 from './ChipsSettings01';
 import { DEFAULT_CURRENCIES } from '../constants';
+import { mainCurrency } from '../functions/currencyEx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,7 +47,6 @@ const CurrencySettings = ({
 
   useEffect(() => {
     getSecondaryCurrencies();
-    console.log(currencies);
   }, []);
 
   const handleAddCurrency = () => {
@@ -68,6 +68,15 @@ const CurrencySettings = ({
   const resetInput = () => {
     setNewCurrency('');
   };
+
+  const nonDeletableCurrencies = () => {
+    const nonDeletableCurrencies = transactions.map(
+      (transaction) => transaction.currency
+    );
+    nonDeletableCurrencies.push(mainCurrency);
+    return nonDeletableCurrencies;
+  };
+
   return (
     <Box className={classes.root}>
       <Typography variant='h6' style={{ marginBottom: '9px' }}>
@@ -107,9 +116,7 @@ const CurrencySettings = ({
       </Typography>
       <ChipsSettings01
         data={currencies}
-        checkIfInUseElements={transactions.map(
-          (transaction) => transaction.currency
-        )}
+        checkIfInUseElements={nonDeletableCurrencies()}
         deleteFunction={deleteCurrency}
       />
     </Box>

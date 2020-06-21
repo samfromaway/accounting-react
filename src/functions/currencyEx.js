@@ -1,5 +1,7 @@
 import { USD_TO_CHF, COP_TO_CHF, EUR_TO_CHF } from '../constants';
 
+export const mainCurrency = 'chf';
+
 export const currencyEx = (amount, currency) => {
   if (currency) {
     switch (currency) {

@@ -105,7 +105,7 @@ const AccountingTable = ({
   const formatNewData = (newData, oldData) => {
     const formatedAmount = +newData.amount;
     const formatedDate = new Date(newData.date).toISOString();
-    const formatedChfAmount = currencyEx(newData.amount, newData.currency);
+    const formatedChfAmount = +currencyEx(newData.amount, newData.currency);
     const formatedNewData = {
       ...newData,
       id: oldData.id,
