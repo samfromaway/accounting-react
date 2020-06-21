@@ -18,8 +18,8 @@ const ExpensesTransactionsState = ({ children }) => {
   const ref = firebase.firestore().collection('expensesTransactions');
   //functional
   function getTransactions() {
-    ref.get().then((snapshot) => {
-      const items = snapshot.docs.map((doc) => ({
+    ref.get().then((item) => {
+      const items = item.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
@@ -36,17 +36,17 @@ const ExpensesTransactionsState = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function getOne() {
-    const expensesTransactions2 = ref.doc('DJDffytqxKOyPOypH3s3');
+  // function getOne() {
+  //   const expensesTransactions2 = ref.doc('DJDffytqxKOyPOypH3s3');
 
-    expensesTransactions2.get().then((collection) => {
-      const id = collection.id;
-      const itemData = collection.data();
-      const item = { id, ...itemData };
-    });
-  }
+  //   expensesTransactions2.get().then((collection) => {
+  //     const id = collection.id;
+  //     const itemData = collection.data();
+  //     const item = { id, ...itemData };
+  //   });
+  // }
 
-  getOne();
+  // getOne();
 
   //Actions
   function deleteTransaction(id) {

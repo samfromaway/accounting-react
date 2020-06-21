@@ -96,12 +96,13 @@ const AccountingTable = ({
     },
   ];
 
-  const formatNewData = (newData) => {
+  const formatNewData = (newData, oldData) => {
     const formatedAmount = +newData.amount;
     const formatedDate = new Date(newData.date).toISOString();
     const formatedChfAmount = currencyEx(newData.amount, newData.currency);
     const formatedNewData = {
       ...newData,
+      id: oldData.id,
       amount: formatedAmount,
       chfAmount: formatedChfAmount,
       date: formatedDate,
@@ -124,7 +125,7 @@ const AccountingTable = ({
             setTimeout(() => {
               resolve();
               if (transactionsInputValidation(newData)) {
-                editTransaction(formatNewData(newData), oldData.id);
+                editTransaction(formatNewData(newData, oldData), oldData.id);
               }
             }, 600);
           }),
