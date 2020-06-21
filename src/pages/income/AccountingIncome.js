@@ -18,7 +18,7 @@ const AccountingIncome = () => {
   const { incomeCategories } = useContext(CategoriesContext);
   return (
     <Fragment>
-      <Box m={11} />
+      <Box m={14} />
       <Container fixed maxWidth='lg'>
         <AccountingSummary
           transactions={incomeTransactions}
