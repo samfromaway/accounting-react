@@ -74,24 +74,24 @@ const App = () => {
 export default App;
 
 // master currency
+// exchange rate change automatically or by user and if yes what happens to exisiting chfAmount and what happens if that's changed
 // master year?
-//style settings
-//reset data add categories
-//Charts tooltip styling
 // max and min display size
 // Alert() in other element from Material UI
 // 100,000 trennzeichen
-//proptypes
+// proptypes
 // export to pdf
-// exchange rate change automatically or by user and if yes what happens to exisiting chfAmount and what happens if that's changed
 
 //ISSUES
-//material ui table date format when edit
+// material ui table date format when edit
 
 // nice to have
 // tooltip buttons input
 // Button Add confimration
 // user currency add in settings
+// undo delete
+// inform if no intenret
+// Charts tooltip styling
 
 //Could have a look into:
 // permanent scrollbar when select dropdown is open?
