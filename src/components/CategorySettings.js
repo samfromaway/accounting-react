@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Typography } from '@material-ui/core';
@@ -35,11 +35,16 @@ const CategorySettings = ({
   id,
   transactions,
   categories,
+  getCategories,
   deleteCategory,
   addCategory,
 }) => {
   const [newCategory, setNewCategory] = useState('');
   const classes = useStyles();
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   const handleAddCategory = () => {
     if (newCategory) {

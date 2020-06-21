@@ -29,6 +29,11 @@ export default (state, action) => {
           };
         }),
       };
+    case 'TRANSACTION_ERROR':
+      return {
+        ...state,
+        error: action.payload,
+      };
     default:
       return state;
   }

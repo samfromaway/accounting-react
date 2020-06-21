@@ -23,7 +23,13 @@ const IncomeTransactionsState = ({ children }) => {
           payload: items,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: 'TRANSACTION_ERROR',
+          payload: err.response.data.error,
+        });
+      });
   }
 
   function deleteTransaction(id) {
@@ -37,7 +43,11 @@ const IncomeTransactionsState = ({ children }) => {
         });
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
+        dispatch({
+          type: 'TRANSACTION_ERROR',
+          payload: err.response.data.error,
+        });
       });
   }
 
@@ -53,6 +63,10 @@ const IncomeTransactionsState = ({ children }) => {
       })
       .catch((err) => {
         console.log(err);
+        dispatch({
+          type: 'TRANSACTION_ERROR',
+          payload: err.response.data.error,
+        });
       });
   }
 
@@ -68,6 +82,10 @@ const IncomeTransactionsState = ({ children }) => {
       })
       .catch((err) => {
         console.log(err);
+        dispatch({
+          type: 'TRANSACTION_ERROR',
+          payload: err.response.data.error,
+        });
       });
   }
 

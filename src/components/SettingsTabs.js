@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import CurrencySettings from '../components/CurrencySettings';
 import CategorySettings from './CategorySettings';
@@ -7,6 +7,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import IncomeTransactionsContext from '../context/income/incomeTransactionsContext';
+import ExpensesTransactionsContext from '../context/expenses/expensesTransactionsContext';
+import CategoriesContext from '../context/categories/categoriesContext';
+import CurrenciesContext from '../context/currencies/currenciesContext';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,19 +58,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function VerticalTabs({
-  expensesTransactions,
-  expensesCategories,
-  deleteExpensesCategory,
-  addExpensesCategory,
-  incomeTransactions,
-  incomeCategories,
-  deleteIncomeCategory,
-  addIncomeCategory,
-  secondaryCurrencies,
-  deleteSecondaryCurrencies,
-  addSecondaryCurrencies,
-}) {
+export default function VerticalTabs() {
+  const { incomeTransactions } = useContext(IncomeTransactionsContext);
+  const { expensesTransactions } = useContext(ExpensesTransactionsContext);
+  const {
+    secondaryCurrencies,
+    getSecondaryCurrencies,
+    deleteSecondaryCurrencies,
+    addSecondaryCurrencies,
+  } = useContext(CurrenciesContext);
+  const {
+    incomeCategories,
+    getIncomeCategories,
+    deleteIncomeCategory,
+    addIncomeCategory,
+    expensesCategories,
+    getExpensesCategories,
+    deleteExpensesCategory,
+    addExpensesCategory,
+  } = useContext(CategoriesContext);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -94,6 +104,7 @@ export default function VerticalTabs({
           id={'income'}
           transactions={incomeTransactions}
           categories={incomeCategories}
+          getCategories={getIncomeCategories}
           deleteCategory={deleteIncomeCategory}
           addCategory={addIncomeCategory}
         />
@@ -104,6 +115,7 @@ export default function VerticalTabs({
           id={'expenses'}
           transactions={expensesTransactions}
           categories={expensesCategories}
+          getCategories={getExpensesCategories}
           deleteCategory={deleteExpensesCategory}
           addCategory={addExpensesCategory}
         />
@@ -114,6 +126,7 @@ export default function VerticalTabs({
           id={'currencies'}
           transactions={expensesTransactions}
           currencies={secondaryCurrencies}
+          getSecondaryCurrencies={getSecondaryCurrencies}
           deleteCurrency={deleteSecondaryCurrencies}
           addCurrency={addSecondaryCurrencies}
         />

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SettingsTabs from '../components/SettingsTabs';
@@ -8,10 +8,6 @@ import Fade from '@material-ui/core/Fade';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import IncomeTransactionsContext from '../context/income/incomeTransactionsContext';
-import ExpensesTransactionsContext from '../context/expenses/expensesTransactionsContext';
-import CategoriesContext from '../context/categories/categoriesContext';
-import CurrenciesContext from '../context/currencies/currenciesContext';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -36,21 +32,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
-  const { incomeTransactions } = useContext(IncomeTransactionsContext);
-  const { expensesTransactions } = useContext(ExpensesTransactionsContext);
-  const {
-    secondaryCurrencies,
-    deleteSecondaryCurrencies,
-    addSecondaryCurrencies,
-  } = useContext(CurrenciesContext);
-  const {
-    incomeCategories,
-    deleteIncomeCategory,
-    addIncomeCategory,
-    expensesCategories,
-    deleteExpensesCategory,
-    addExpensesCategory,
-  } = useContext(CategoriesContext);
   const classes = useStyles();
   return (
     <Modal
@@ -69,19 +50,7 @@ const SettingsModal = ({ openSettingsModal, handleCloseSettingsModal }) => {
         <Paper className={classes.paper}>
           <Typography variant='h5'>Settings</Typography>
           <Divider style={{ margin: '0.5rem 0 1rem 0 ' }} />
-          <SettingsTabs
-            expensesTransactions={expensesTransactions}
-            expensesCategories={expensesCategories}
-            deleteExpensesCategory={deleteExpensesCategory}
-            addExpensesCategory={addExpensesCategory}
-            incomeTransactions={incomeTransactions}
-            incomeCategories={incomeCategories}
-            deleteIncomeCategory={deleteIncomeCategory}
-            addIncomeCategory={addIncomeCategory}
-            secondaryCurrencies={secondaryCurrencies}
-            deleteSecondaryCurrencies={deleteSecondaryCurrencies}
-            addSecondaryCurrencies={addSecondaryCurrencies}
-          />
+          <SettingsTabs />
 
           <Button
             className={classes.closeButton}

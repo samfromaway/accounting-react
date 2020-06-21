@@ -7,6 +7,7 @@ import firebase from '../../firebase';
 const ExpensesTransactionsState = ({ children }) => {
   const initialState = {
     transactions: [],
+    error: null,
   };
 
   const [state, dispatch] = useReducer(
@@ -26,7 +27,13 @@ const ExpensesTransactionsState = ({ children }) => {
           payload: items,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: 'TRANSACTION_ERROR',
+          payload: err.response.data.error,
+        });
+      });
   }
 
   function deleteTransaction(id) {
@@ -40,7 +47,11 @@ const ExpensesTransactionsState = ({ children }) => {
         });
       })
       .catch((err) => {
-        console.error(err);
+        console.log(err);
+        dispatch({
+          type: 'TRANSACTION_ERROR',
+          payload: err.response.data.error,
+        });
       });
   }
 
@@ -56,6 +67,10 @@ const ExpensesTransactionsState = ({ children }) => {
       })
       .catch((err) => {
         console.log(err);
+        dispatch({
+          type: 'TRANSACTION_ERROR',
+          payload: err.response.data.error,
+        });
       });
   }
 
@@ -71,6 +86,10 @@ const ExpensesTransactionsState = ({ children }) => {
       })
       .catch((err) => {
         console.log(err);
+        dispatch({
+          type: 'TRANSACTION_ERROR',
+          payload: err.response.data.error,
+        });
       });
   }
 

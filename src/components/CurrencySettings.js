@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Typography } from '@material-ui/core';
@@ -37,11 +37,17 @@ const CurrencySettings = ({
   id,
   transactions,
   currencies,
+  getSecondaryCurrencies,
   deleteCurrency,
   addCurrency,
 }) => {
   const [newCurrency, setNewCurrency] = useState('');
   const classes = useStyles();
+
+  useEffect(() => {
+    getSecondaryCurrencies();
+    console.log(currencies);
+  }, []);
 
   const handleAddCurrency = () => {
     if (newCurrency) {
