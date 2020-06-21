@@ -12,6 +12,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "chart.js": "^2.9.3",
+    "firebase": "^7.15.3",
     "material-table": "^1.58.2",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",

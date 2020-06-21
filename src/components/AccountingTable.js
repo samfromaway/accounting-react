@@ -124,7 +124,7 @@ const AccountingTable = ({
             setTimeout(() => {
               resolve();
               if (transactionsInputValidation(newData)) {
-                editTransaction(formatNewData(newData), oldData._id);
+                editTransaction(formatNewData(newData), oldData.id);
               }
             }, 600);
           }),
@@ -132,7 +132,7 @@ const AccountingTable = ({
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              deleteTransaction(oldData._id);
+              deleteTransaction(oldData.id);
             }, 600);
           }),
       }}

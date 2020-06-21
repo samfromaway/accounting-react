@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './app.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import AccountingIncome from './pages/income/AccountingIncome';
@@ -10,9 +11,6 @@ import CategoriesState from './context/categories/CategoriesState';
 import CurrenciesState from './context/currencies/CurrenciesState';
 import SettingsModal from './modals/SettingsModal';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
-//import Theme from './styles/theme';
-import './app.css';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);

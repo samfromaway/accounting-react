@@ -49,14 +49,14 @@ export default function Dashboard() {
         Choose:
       </Typography>
       <div className={classes.root}>
-        <Link to={'/expenses'}>
+        <Link to={'/income'}>
           <Paper className={classes.paper}>
             <InputIcon className={classes.icon} />
             <Typography className={classes.text}>Income</Typography>
           </Paper>
         </Link>
 
-        <Link to={'/income'}>
+        <Link to={'/expenses'}>
           <Paper className={classes.paper}>
             <CallMissedOutgoingIcon className={classes.icon} />
             <Typography className={classes.text}>Expenses</Typography>

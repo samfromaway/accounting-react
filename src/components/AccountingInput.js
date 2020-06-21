@@ -70,8 +70,8 @@ const AccountingInput = ({ categories, addTransaction }) => {
   const onInputSubmit = (e) => {
     e.preventDefault();
     const newTransaction = {
-      // id will be generated from mongoDB
-      _id: Math.floor(Math.random() * 100000000),
+      // id is generated from firebase
+      //id: Math.floor(Math.random() * 100000000),
       date: date.toISOString(),
       description,
       currency,

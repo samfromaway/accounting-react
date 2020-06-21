@@ -7,7 +7,7 @@ const IncomeTransactionsState = ({ children }) => {
   const initialState = {
     transactions: [
       {
-        _id: 11073046,
+        id: 11073046,
         date: '2020-01-01T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
@@ -17,7 +17,7 @@ const IncomeTransactionsState = ({ children }) => {
         category: 'hteservices',
       },
       {
-        _id: 11044066,
+        id: 11044066,
         date: '2020-04-29T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
@@ -27,7 +27,7 @@ const IncomeTransactionsState = ({ children }) => {
         category: 'comissions',
       },
       {
-        _id: 13073066,
+        id: 13073066,
         date: '2020-04-29T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
@@ -37,7 +37,7 @@ const IncomeTransactionsState = ({ children }) => {
         category: 'hteservices',
       },
       {
-        _id: 11073566,
+        id: 11073566,
         date: '2020-03-29T11:22:55.763Z',
         description: 'dfefe',
         currency: 'usd',
