@@ -47,6 +47,7 @@ const CurrencySettings = ({
 
   useEffect(() => {
     getSecondaryCurrencies();
+    // eslint-disable-next-line
   }, []);
 
   const handleAddCurrency = () => {

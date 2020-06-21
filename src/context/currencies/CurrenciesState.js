@@ -17,6 +17,7 @@ const ExpensesTransactionsState = ({ children }) => {
 
   useEffect(() => {
     getSecondaryCurrencies();
+    // eslint-disable-next-line
   }, []);
 
   function getSecondaryCurrencies() {

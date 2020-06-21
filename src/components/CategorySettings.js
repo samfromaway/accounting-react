@@ -44,6 +44,7 @@ const CategorySettings = ({
 
   useEffect(() => {
     getCategories();
+    // eslint-disable-next-line
   }, []);
 
   const handleAddCategory = () => {

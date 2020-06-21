@@ -20,6 +20,7 @@ const CategoriesState = ({ children }) => {
   useEffect(() => {
     getIncomeCategories();
     getExpensesCategories();
+    // eslint-disable-next-line
   }, []);
 
   function getIncomeCategories() {
