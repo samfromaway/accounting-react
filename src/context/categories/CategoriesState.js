@@ -1,19 +1,24 @@
 import React, { useReducer, useEffect } from 'react';
 import CategoriesContext from './categoriesContext';
 import CategoriesReducer from './categoriesReducer';
-import firebase from '../../firebase';
 
 // Provider Component
 const CategoriesState = ({ children }) => {
   const initialState = {
-    incomeCategories: [],
-    expensesCategories: [],
+    incomeCategories: [
+      { label: 'Online', value: 'online' },
+      { label: 'Products', value: 'products' },
+      { label: 'Services', value: 'services' },
+    ],
+    expensesCategories: [
+      { label: 'Online', value: 'online' },
+      { label: 'Google Ads', value: 'googleads' },
+      { label: 'Rent', value: 'rent' },
+    ],
     error: null,
   };
 
   const [state, dispatch] = useReducer(CategoriesReducer, initialState);
-
-  const refIncome = firebase.firestore().collection('incomeCategories');
 
   //INCOME--------------
 
@@ -24,120 +29,41 @@ const CategoriesState = ({ children }) => {
   }, []);
 
   function getIncomeCategories() {
-    refIncome
-      .get()
-      .then((item) => {
-        const items = item.docs.map((doc) => doc.data());
-        dispatch({
-          type: 'GET_INCOME_CATEGORIES',
-          payload: items,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'INCOME_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    return state.incomeCategories;
   }
 
   function deleteIncomeCategory(category) {
-    refIncome
-      .doc(category)
-      .delete()
-      .then(() => {
-        dispatch({
-          type: 'DELETE_INCOME_CATEGORY',
-          payload: category,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'CATEGORY_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    dispatch({
+      type: 'DELETE_INCOME_CATEGORY',
+      payload: category,
+    });
   }
 
   function addIncomeCategory(category) {
-    refIncome
-      .doc(category.value)
-      .set(category)
-      .then(() => {
-        dispatch({
-          type: 'ADD_INCOME_CATEGORY',
-          payload: category,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'CATEGORY_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    dispatch({
+      type: 'ADD_INCOME_CATEGORY',
+      payload: category,
+    });
   }
 
   // EXPENSES------------------
-  const refExpenses = firebase.firestore().collection('expenseCategories');
 
   function getExpensesCategories() {
-    refExpenses
-      .get()
-      .then((item) => {
-        const items = item.docs.map((doc) => doc.data());
-        dispatch({
-          type: 'GET_EXPENSES_CATEGORIES',
-          payload: items,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'INCOME_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    return state.expensesCategories;
   }
 
   function deleteExpensesCategory(category) {
-    refExpenses
-      .doc(category)
-      .delete()
-      .then(() => {
-        dispatch({
-          type: 'DELETE_EXPENSES_CATEGORY',
-          payload: category,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'CATEGORY_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    dispatch({
+      type: 'DELETE_EXPENSES_CATEGORY',
+      payload: category,
+    });
   }
 
   function addExpensesCategory(category) {
-    refExpenses
-      .doc(category.value)
-      .set(category)
-      .then(() => {
-        dispatch({
-          type: 'ADD_EXPENSES_CATEGORY',
-          payload: category,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'CATEGORY_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    dispatch({
+      type: 'ADD_EXPENSES_CATEGORY',
+      payload: category,
+    });
   }
 
   return (

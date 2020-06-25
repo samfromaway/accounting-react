@@ -82,13 +82,11 @@ const AccountingTable = ({
     {
       title: 'Amount',
       field: 'amount',
-      type: 'numeric',
       cellStyle: { textAlign: 'left' },
     },
     {
       title: 'Ex Rate',
       field: 'exRate',
-      type: 'numeric',
       cellStyle: { textAlign: 'left' },
     },
     {

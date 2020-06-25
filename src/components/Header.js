@@ -21,12 +21,8 @@ import InputIcon from '@material-ui/icons/Input';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
-
-import firebase from '../firebase';
-import { AuthContext } from '../auth/Auth';
 
 import { currentYear } from '../constants';
 
@@ -106,7 +102,6 @@ export default function Header({
   toggleDarkMode,
   handleOpenSettingsModal,
 }) {
-  const { currentUser } = useContext(AuthContext);
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [activePage, setActivePage] = useState(activePageName());
@@ -125,10 +120,6 @@ export default function Header({
     setOpen(false);
   };
 
-  const logOut = () => {
-    firebase.auth().signOut();
-  };
-
   function activePageName() {
     const url = window.location.pathname;
 
@@ -142,38 +133,6 @@ export default function Header({
       return 'Settings';
     } else return 'Dashboard';
   }
-
-  if (!currentUser)
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position='fixed'
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}
-        >
-          <Toolbar>
-            <Typography variant='h6' noWrap className={classes.title}>
-              Accounting {currentYear}
-            </Typography>
-            <Typography variant='h6' noWrap className={classes.title}>
-              {activePage}
-            </Typography>
-
-            <IconButton
-              aria-label='account of current user'
-              aria-controls='menu-appbar'
-              aria-haspopup='true'
-              onClick={toggleDarkMode}
-              color='inherit'
-            >
-              {isDarkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
 
   return (
     <div className={classes.root}>
@@ -197,7 +156,7 @@ export default function Header({
             <MenuIcon />
           </IconButton>
           <Typography variant='h6' noWrap className={classes.title}>
-            Accounting {currentYear}
+            Accounting (Preview) {currentYear}
           </Typography>
           <Typography variant='h6' noWrap className={classes.title}>
             {activePage}
@@ -211,15 +170,6 @@ export default function Header({
             color='inherit'
           >
             {isDarkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}
-          </IconButton>
-          <IconButton
-            aria-label='account of current user'
-            aria-controls='menu-appbar'
-            aria-haspopup='true'
-            onClick={logOut}
-            color='inherit'
-          >
-            <MeetingRoomIcon />
           </IconButton>
         </Toolbar>
       </AppBar>

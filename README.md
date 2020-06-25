@@ -1,18 +1,34 @@
+## What Does Preview Mean?
+
+This is a preview app of a other repository. The other repository features a login page and some more functionalities.
+Furthermore this is not a production ready application. Some of the issues and additional adds can be found down below.
+
+## Some Todos
+
+master currency editable
+ENV Variables  
+feedback if transaction added
+master year?
+max and min display size
+Alert() in other element from Material UI
+proptypes
+export to pdf
+
+## Work Todo Before Functional as a preview
+
+Add your Firebase credentials in firebase.js
+Change Routs to <PrivateRoute/>
+Add a log out button and function
+Change the table format to numeric in amount and ex rate
+
+## Some Issues
+
+material ui table date format when edit
+if by coincidence the new and old currency exchange should be the exact same you can't update just the currence when editing via the table.
+
 ## Strict Mode Disabled
 
 Because of the table by material UI strict mode had to be disabled because of an error.
-
-## Adding New Category
-
-When adding a new category make sure to add the category to the required functions in the chart section.
-
-## CHF FX Calculation
-
-The amount of CHF will be generated the first time with calculation the fx rate when the new transaction get's added.
-After the transaction is in the table, the transaction get's recalculated with the current ex-rate value.
-So it's NOT a static value, it's still gets updated while in the table.
-
-In the project directory, you can run:
 
 ## Available Scripts
 
@@ -54,7 +70,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting

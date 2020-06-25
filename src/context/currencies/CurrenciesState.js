@@ -1,19 +1,21 @@
 import React, { useReducer } from 'react';
 import CurrenciesContext from './currenciesContext';
 import CurrenciesReducer from './currenciesReducer';
-import firebase from '../../firebase';
 import { useEffect } from 'react';
 
 // Provider Component
 const ExpensesTransactionsState = ({ children }) => {
   const initialState = {
-    chosenSecondaryCurrencies: [],
+    chosenSecondaryCurrencies: [
+      { label: 'CHF', value: 'chf' },
+      { label: 'EUR', value: 'eur' },
+      { label: 'USD', value: 'usd' },
+      { label: 'COP', value: 'cop' },
+    ],
     error: null,
   };
 
   const [state, dispatch] = useReducer(CurrenciesReducer, initialState);
-
-  const ref = firebase.firestore().collection('chosenSecondaryCurrencies');
 
   useEffect(() => {
     getSecondaryCurrencies();
@@ -21,60 +23,21 @@ const ExpensesTransactionsState = ({ children }) => {
   }, []);
 
   function getSecondaryCurrencies() {
-    ref
-      .get()
-      .then((item) => {
-        const items = item.docs.map((doc) => doc.data());
-        dispatch({
-          type: 'GET_SECONDARY_CURRENCIES',
-          payload: items,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'SECONDARY_CURRENCIES_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    return state.chosenSecondaryCurrencies;
   }
 
   function deleteSecondaryCurrencies(currency) {
-    ref
-      .doc(currency)
-      .delete()
-      .then(() => {
-        dispatch({
-          type: 'DELETE_SECONDARY_CURRENCIES',
-          payload: currency,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'SECONDARY_CURRENCIES_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    dispatch({
+      type: 'DELETE_SECONDARY_CURRENCIES',
+      payload: currency,
+    });
   }
 
   function addSecondaryCurrencies(currency) {
-    ref
-      .doc(currency.value)
-      .set(currency)
-      .then(() => {
-        dispatch({
-          type: 'ADD_SECONDARY_CURRENCIES',
-          payload: currency,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: 'SECONDARY_CURRENCIES_ERROR',
-          payload: err.response.data.error,
-        });
-      });
+    dispatch({
+      type: 'ADD_SECONDARY_CURRENCIES',
+      payload: currency,
+    });
   }
 
   return (
