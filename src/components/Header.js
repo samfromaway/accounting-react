@@ -20,7 +20,6 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import InputIcon from '@material-ui/icons/Input';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
 
@@ -232,18 +231,6 @@ export default function Header({
               <CallMissedOutgoingIcon />
             </ListItemIcon>
             <ListItemText primary='Expenses' />
-          </ListItem>
-          <ListItem
-            button
-            component={Link}
-            to='/capital'
-            className={classes.listItem}
-            selected={activePage === 'Capital' ? true : false}
-          >
-            <ListItemIcon>
-              <EqualizerIcon />
-            </ListItemIcon>
-            <ListItemText primary='Capital' />
           </ListItem>
           <Divider />
           <ListItem

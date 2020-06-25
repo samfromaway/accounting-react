@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import InputIcon from '@material-ui/icons/Input';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,13 +59,6 @@ export default function Dashboard() {
           <Paper className={classes.paper}>
             <CallMissedOutgoingIcon className={classes.icon} />
             <Typography className={classes.text}>Expenses</Typography>
-          </Paper>
-        </Link>
-
-        <Link to={'/capital'}>
-          <Paper className={classes.paper}>
-            <EqualizerIcon className={classes.icon} />
-            <Typography className={classes.text}>Capital</Typography>
           </Paper>
         </Link>
       </div>
