@@ -91,6 +91,7 @@ export default App;
 
 //ISSUES
 // material ui table date format when edit
+// if by coincidence the new and old currency exchange should be the exact same you can't update just the currence when editing via the table.
 
 // nice to have
 // tooltip buttons input

@@ -14,7 +14,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import { currencyEx } from '../functions/currencyEx';
 import { transactionsInputValidation } from '../functions/transactionsInputValidation';
 import CurrenciesContext from '../context/currencies/currenciesContext';
 
