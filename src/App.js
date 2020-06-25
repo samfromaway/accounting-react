@@ -38,15 +38,15 @@ const App = () => {
   });
 
   return (
-    <AuthProvider>
-      <CategoriesState>
-        <CurrenciesState>
-          <IncomeTransactionsState>
-            <ExpensesTransactionsState>
-              <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <CategoriesState>
+          <CurrenciesState>
+            <IncomeTransactionsState>
+              <ExpensesTransactionsState>
                 <Router>
                   <Header
-                    themeMode={isDarkMode}
+                    isDarkMode={isDarkMode}
                     toggleDarkMode={toggleDarkMode}
                     handleOpenSettingsModal={handleOpenSettingsModal}
                   />
@@ -68,18 +68,19 @@ const App = () => {
                   openSettingsModal={openSettingsModal}
                   handleCloseSettingsModal={handleCloseSettingsModal}
                 />
-              </ThemeProvider>
-            </ExpensesTransactionsState>
-          </IncomeTransactionsState>
-        </CurrenciesState>
-      </CategoriesState>
-    </AuthProvider>
+              </ExpensesTransactionsState>
+            </IncomeTransactionsState>
+          </CurrenciesState>
+        </CategoriesState>
+      </AuthProvider>
+    </ThemeProvider>
   );
 };
 
 export default App;
 
 // master currency
+// ENV Variables   https://www.youtube.com/watch?v=unr4s3jd9qA&t=1s
 // exchange rate change automatically or by user and if yes what happens to exisiting chfAmount and what happens if that's changed
 // master year?
 // max and min display size

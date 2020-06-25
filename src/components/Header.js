@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -24,11 +22,13 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
+
 import firebase from '../firebase';
+import { AuthContext } from '../auth/Auth';
 
 import { currentYear } from '../constants';
-
-//https://stackoverflow.com/questions/58442168/why-useeffect-doesnt-run-on-window-location-pathname-changes
 
 const drawerWidth = 240;
 
@@ -102,15 +102,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header({
-  themeMode,
+  isDarkMode,
   toggleDarkMode,
   handleOpenSettingsModal,
 }) {
-  const classes = useStyles();
-
+  const { currentUser } = useContext(AuthContext);
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [activePage, setActivePage] = useState(activePageName());
+
+  const classes = useStyles();
 
   window.addEventListener('click', () => {
     setActivePage(activePageName());
@@ -142,6 +143,38 @@ export default function Header({
     } else return 'Dashboard';
   }
 
+  if (!currentUser)
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position='fixed'
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}
+        >
+          <Toolbar>
+            <Typography variant='h6' noWrap className={classes.title}>
+              Accounting {currentYear}
+            </Typography>
+            <Typography variant='h6' noWrap className={classes.title}>
+              {activePage}
+            </Typography>
+
+            <IconButton
+              aria-label='account of current user'
+              aria-controls='menu-appbar'
+              aria-haspopup='true'
+              onClick={toggleDarkMode}
+              color='inherit'
+            >
+              {isDarkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}
+            </IconButton>
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -169,14 +202,16 @@ export default function Header({
           <Typography variant='h6' noWrap className={classes.title}>
             {activePage}
           </Typography>
-          <FormControlLabel
-            value='start'
-            control={<Switch color='default' />}
-            label='Light/Dark'
-            labelPlacement='start'
-            checked={themeMode}
-            onChange={toggleDarkMode}
-          />
+
+          <IconButton
+            aria-label='account of current user'
+            aria-controls='menu-appbar'
+            aria-haspopup='true'
+            onClick={toggleDarkMode}
+            color='inherit'
+          >
+            {isDarkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}
+          </IconButton>
           <IconButton
             aria-label='account of current user'
             aria-controls='menu-appbar'
