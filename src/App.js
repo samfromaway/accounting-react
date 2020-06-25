@@ -80,7 +80,7 @@ const App = () => {
 export default App;
 
 // master currency
-// ENV Variables   https://www.youtube.com/watch?v=unr4s3jd9qA&t=1s
+// ENV Variables  https://www.youtube.com/watch?v=unr4s3jd9qA&t=1s
 // feedback if transaction added
 // master year?
 // max and min display size
