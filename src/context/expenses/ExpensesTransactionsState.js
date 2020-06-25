@@ -52,9 +52,7 @@ const ExpensesTransactionsState = ({ children }) => {
       },
       {
         amount: 22,
-        category: 'rent',
         chfAmount: 140,
-        currency: 'rent',
         date: '2020-06-25T19:06:30.289Z',
         currency: 'chf',
         category: 'online',
