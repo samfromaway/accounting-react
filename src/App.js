@@ -3,14 +3,16 @@ import './app.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import AccountingIncome from './pages/income/AccountingIncome';
-import Dashboard from './pages/dashboard/Dashboard';
+import Home from './pages/home/Home';
 import AccountingExpenses from './pages/expenses/AccountingExpenses';
 import IncomeTransactionsState from './context/income/IncomeTransactionsState';
 import ExpensesTransactionsState from './context/expenses/ExpensesTransactionsState';
 import CategoriesState from './context/categories/CategoriesState';
 import CurrenciesState from './context/currencies/CurrenciesState';
+import { AuthProvider } from './auth/Auth';
 import SettingsModal from './modals/SettingsModal';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import PrivateRoute from './auth/PrivateRoute';
 
 const App = () => {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -36,38 +38,42 @@ const App = () => {
   });
 
   return (
-    <CategoriesState>
-      <CurrenciesState>
-        <IncomeTransactionsState>
-          <ExpensesTransactionsState>
-            <ThemeProvider theme={theme}>
-              <Router>
-                <Header
-                  themeMode={isDarkMode}
-                  toggleDarkMode={toggleDarkMode}
-                  handleOpenSettingsModal={handleOpenSettingsModal}
+    <AuthProvider>
+      <CategoriesState>
+        <CurrenciesState>
+          <IncomeTransactionsState>
+            <ExpensesTransactionsState>
+              <ThemeProvider theme={theme}>
+                <Router>
+                  <Header
+                    themeMode={isDarkMode}
+                    toggleDarkMode={toggleDarkMode}
+                    handleOpenSettingsModal={handleOpenSettingsModal}
+                  />
+                  <Switch>
+                    <Route exact path='/' component={Home} />
+                    <PrivateRoute
+                      exact
+                      path='/income'
+                      component={AccountingIncome}
+                    />
+                    <PrivateRoute
+                      exact
+                      path='/expenses'
+                      component={AccountingExpenses}
+                    />
+                  </Switch>
+                </Router>
+                <SettingsModal
+                  openSettingsModal={openSettingsModal}
+                  handleCloseSettingsModal={handleCloseSettingsModal}
                 />
-                <Switch>
-                  <Route exact path='/income'>
-                    <AccountingIncome />
-                  </Route>
-                  <Route exact path='/'>
-                    <Dashboard />
-                  </Route>
-                  <Route exact path='/expenses'>
-                    <AccountingExpenses />
-                  </Route>
-                </Switch>
-              </Router>
-              <SettingsModal
-                openSettingsModal={openSettingsModal}
-                handleCloseSettingsModal={handleCloseSettingsModal}
-              />
-            </ThemeProvider>
-          </ExpensesTransactionsState>
-        </IncomeTransactionsState>
-      </CurrenciesState>
-    </CategoriesState>
+              </ThemeProvider>
+            </ExpensesTransactionsState>
+          </IncomeTransactionsState>
+        </CurrenciesState>
+      </CategoriesState>
+    </AuthProvider>
   );
 };
 

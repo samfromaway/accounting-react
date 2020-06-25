@@ -23,6 +23,9 @@ import InputIcon from '@material-ui/icons/Input';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CallMissedOutgoingIcon from '@material-ui/icons/CallMissedOutgoing';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import firebase from '../firebase';
+
 import { currentYear } from '../constants';
 
 //https://stackoverflow.com/questions/58442168/why-useeffect-doesnt-run-on-window-location-pathname-changes
@@ -121,6 +124,10 @@ export default function Header({
     setOpen(false);
   };
 
+  const logOut = () => {
+    firebase.auth().signOut();
+  };
+
   function activePageName() {
     const url = window.location.pathname;
 
@@ -162,15 +169,23 @@ export default function Header({
           <Typography variant='h6' noWrap className={classes.title}>
             {activePage}
           </Typography>
-
           <FormControlLabel
             value='start'
             control={<Switch color='default' />}
             label='Light/Dark'
-            labelPlacement='end'
+            labelPlacement='start'
             checked={themeMode}
             onChange={toggleDarkMode}
           />
+          <IconButton
+            aria-label='account of current user'
+            aria-controls='menu-appbar'
+            aria-haspopup='true'
+            onClick={logOut}
+            color='inherit'
+          >
+            <MeetingRoomIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -211,7 +226,6 @@ export default function Header({
           </ListItem>
           <ListItem
             button
-            //onClick={setTitleFromURL}
             component={Link}
             to='/income'
             className={classes.listItem}
