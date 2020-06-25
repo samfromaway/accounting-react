@@ -81,7 +81,7 @@ export default App;
 
 // master currency
 // ENV Variables   https://www.youtube.com/watch?v=unr4s3jd9qA&t=1s
-// exchange rate change automatically or by user and if yes what happens to exisiting chfAmount and what happens if that's changed
+// feedback if transaction added
 // master year?
 // max and min display size
 // Alert() in other element from Material UI

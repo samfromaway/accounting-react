@@ -5,6 +5,8 @@ export const transactionsInputValidation = (newData) => {
     newData.description === '' ||
     newData.currency === '' ||
     newData.amount === '' ||
+    newData.exRate === '' ||
+    newData.exRate === '0' ||
     newData.document === '' ||
     newData.category === ''
   ) {

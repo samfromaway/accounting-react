@@ -25,7 +25,14 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    padding: '10px 0',
+    padding: '0 0 40px 0',
+  },
+  boxDate: {
+    display: 'flex',
+    width: '100%',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    padding: '10px 0 20px 0',
   },
   inputElement: {
     margin: theme.spacing(1),
@@ -48,6 +55,11 @@ const useStyles = makeStyles((theme) => ({
     bottom: '10px',
     right: '10px',
   },
+  exRate: {
+    position: 'absolute',
+    bottom: '34px',
+    right: '10px',
+  },
   title: {
     position: 'absolute',
     top: '10px',
@@ -62,7 +74,8 @@ const AccountingInput = ({ categories, addTransaction }) => {
   const [description, setDescription] = useState('');
   const [currency, setCurrency] = useState('');
   const [amount, setAmount] = useState('');
-  const [chfAmount, setChfAmounts] = useState(0);
+  const [exRate, setExRate] = useState('');
+  const [chfAmount, setChfAmounts] = useState('');
   const [document, setDocument] = useState('');
   const [category, setCategory] = useState('');
 
@@ -76,6 +89,7 @@ const AccountingInput = ({ categories, addTransaction }) => {
       description,
       currency,
       amount: +amount,
+      exRate: +exRate,
       chfAmount: +chfAmount,
       document,
       category,
@@ -87,18 +101,25 @@ const AccountingInput = ({ categories, addTransaction }) => {
   };
 
   const handleAmountChange = (e) => {
-    setAmount(+e.target.value);
-    setChfAmounts(+currencyEx(e.target.value, currency));
+    setAmount(e.target.value);
+    setChfAmounts(e.target.value * exRate);
   };
 
   const handleCurrencyChange = (e) => {
     setCurrency(e.target.value);
-    setChfAmounts(+currencyEx(amount, e.target.value));
+    setExRate(currencyEx(e.target.value));
+    setChfAmounts(amount * currencyEx(e.target.value));
   };
 
-  const totalChfAmount = () => {
+  const formatedChfAmount = () => {
     if (chfAmount) {
       return 'CHF ' + chfAmount.toFixed(2);
+    }
+  };
+
+  const formatedExRate = () => {
+    if (exRate) {
+      return exRate + ' Ex';
     }
   };
 
@@ -107,6 +128,7 @@ const AccountingInput = ({ categories, addTransaction }) => {
     setDescription('');
     setCurrency('');
     setAmount('');
+    setExRate('');
     setChfAmounts('');
     setDocument('');
     setCategory('');
@@ -123,7 +145,7 @@ const AccountingInput = ({ categories, addTransaction }) => {
           <Typography variant='h6' className={classes.title}>
             Add New
           </Typography>
-          <Box className={classes.box}>
+          <Box className={classes.boxDate}>
             <KeyboardDatePicker
               id='date'
               className={classes.inputElement}
@@ -163,18 +185,16 @@ const AccountingInput = ({ categories, addTransaction }) => {
                 </MenuItem>
               ))}
             </TextField>
-
             <TextField
               id='amount'
               required={true}
-              type={'number'}
+              type='number'
               className={classes.inputElement}
               value={amount}
               label='Amount'
               variant='outlined'
               onChange={handleAmountChange}
             />
-
             <TextField
               id='document'
               className={classes.inputElement}
@@ -183,7 +203,6 @@ const AccountingInput = ({ categories, addTransaction }) => {
               onChange={(e) => setDocument(e.target.value)}
               variant='outlined'
             />
-
             <TextField
               id='category'
               required={true}
@@ -201,8 +220,11 @@ const AccountingInput = ({ categories, addTransaction }) => {
               ))}
             </TextField>
           </Box>
+          <Typography variant='body2' className={classes.exRate}>
+            {formatedExRate()}
+          </Typography>
           <Typography className={classes.chfValue}>
-            {totalChfAmount()}
+            {formatedChfAmount()}
           </Typography>
           <Box className={classes.fabBox}>
             <Fab color='primary' aria-label='add' onClick={onInputSubmit}>

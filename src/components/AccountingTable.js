@@ -87,6 +87,12 @@ const AccountingTable = ({
       cellStyle: { textAlign: 'left' },
     },
     {
+      title: 'Ex Rate',
+      field: 'exRate',
+      type: 'numeric',
+      cellStyle: { textAlign: 'left' },
+    },
+    {
       title: 'CHF',
       field: 'chfAmount',
       type: 'currency',
@@ -105,11 +111,13 @@ const AccountingTable = ({
   const formatNewData = (newData, oldData) => {
     const formatedAmount = +newData.amount;
     const formatedDate = new Date(newData.date).toISOString();
-    const formatedChfAmount = +currencyEx(newData.amount, newData.currency);
+    const formatedChfAmount = +newData.amount * newData.exRate;
+    const formatedExRate = +newData.exRate;
     const formatedNewData = {
       ...newData,
       id: oldData.id,
       amount: formatedAmount,
+      exRate: formatedExRate,
       chfAmount: formatedChfAmount,
       date: formatedDate,
     };
@@ -130,8 +138,21 @@ const AccountingTable = ({
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-              if (transactionsInputValidation(newData)) {
-                editTransaction(formatNewData(newData, oldData), oldData.id);
+              if (newData.currency === oldData.currency) {
+                if (transactionsInputValidation(newData)) {
+                  editTransaction(formatNewData(newData, oldData), oldData.id);
+                }
+              } else {
+                if (newData.exRate === oldData.exRate) {
+                  alert('Please adjust EX Rate after changing the currency');
+                } else {
+                  if (transactionsInputValidation(newData)) {
+                    editTransaction(
+                      formatNewData(newData, oldData),
+                      oldData.id
+                    );
+                  }
+                }
               }
             }, 600);
           }),
